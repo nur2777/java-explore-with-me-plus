@@ -1,9 +1,9 @@
-package service;
+package ru.practicum.service;
 
-import dto.HitDTO;
-import dto.UriStatDTO;
+import ru.practicum.dto.HitDTO;
+import ru.practicum.dto.UriStatDTO;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -18,5 +18,5 @@ public interface EndpointHitService {
     /** Метод получения статистики по заданным параметрам
      * @return статистика в виде списка запросов
      */
-    List<UriStatDTO> getStats(String start, String end, ArrayList<String> uris, boolean unique);
+    List<UriStatDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
 }

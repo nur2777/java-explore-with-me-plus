@@ -1,9 +1,9 @@
-package controller;
+package ru.practicum.controller;
 
-import dto.HitDTO;
-import dto.UriStatDTO;
+import ru.practicum.dto.HitDTO;
+import ru.practicum.dto.UriStatDTO;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -18,13 +18,11 @@ public interface EndpointHitController {
 
     /**
      * Эндпоинт получения статистики по заданным параметрам
-     * @param start обязательный, дата и время начала диапазона за который нужно
-     *              выгрузить статистику (в формате "yyyy-MM-dd HH:mm:ss")
-     * @param end обязательный, Дата и время конца диапазона за который нужно
-     *            выгрузить статистику (в формате "yyyy-MM-dd HH:mm:ss")
+     * @param start обязательный, дата и время начала диапазона за который нужно выгрузить статистику
+     * @param end обязательный, Дата и время конца диапазона за который нужно выгрузить статистику
      * @param uris Список uri для которых нужно выгрузить статистику
      * @param unique Нужно ли учитывать только уникальные посещения (только с уникальным ip)
      * @return объект
      */
-    List<UriStatDTO> getStats(String start, String end, ArrayList<String> uris, boolean unique);
+    List<UriStatDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
 }

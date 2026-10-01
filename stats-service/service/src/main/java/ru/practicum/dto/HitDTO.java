@@ -1,4 +1,4 @@
-package dto;
+package ru.practicum.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -7,10 +7,11 @@ import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
 
+import static ru.practicum.constants.Constants.DATE_TIME_PATTERN;
+
 @Data
 @NoArgsConstructor
 public class HitDTO {
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
     /**
      * Идентификатор запроса
      */
@@ -44,7 +45,6 @@ public class HitDTO {
      *  Дата и время, когда был совершен запрос к эндпоинту (в формате "yyyy-MM-dd HH:mm:ss")
      */
     @NotNull(message = "Дата и время, когда был совершен запрос не могут быть пустыми")
-    @NotBlank(message = "Дата и время, когда был совершен запрос не могут быть пустыми")
     @JsonFormat(pattern = DATE_TIME_PATTERN)
     private LocalDateTime timestamp;
 }
