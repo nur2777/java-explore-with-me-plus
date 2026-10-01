@@ -47,5 +47,5 @@ public class EndpointHit {
      * Дата и время, когда был совершен запрос к эндпоинту
      */
     @Column(name = "hit_datetime")
-    private LocalDateTime hitDatetime = LocalDateTime.now();
+    private LocalDateTime hitDatetime;
 }
