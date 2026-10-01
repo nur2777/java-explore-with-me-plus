@@ -1,7 +1,7 @@
-package service;
+package ru.practicum.service;
 
-import dto.HitDTO;
-import dto.UriStatDTO;
+import ru.practicum.dto.HitDto;
+import ru.practicum.dto.StatDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ import java.util.List;
 @Service
 public class EndpointHitServiceImpl implements EndpointHitService {
     @Override
-    public void addHit(HitDTO hitDTO) {
+    public void addHit(HitDto hitDTO) {
         //TODO
     }
 
     @Override
-    public List<UriStatDTO> getStats(String start, String end, ArrayList<String> uris, boolean unique) {
+    public List<StatDto> getStats(String start, String end, ArrayList<String> uris, boolean unique) {
         return List.of();
     }
 }

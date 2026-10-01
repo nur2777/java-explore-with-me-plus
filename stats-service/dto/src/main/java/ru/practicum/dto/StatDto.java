@@ -1,11 +1,11 @@
-package dto;
+package ru.practicum.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UriStatDTO {
+public class StatDto {
 
     /**
      *  Название сервиса
