@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EndpointHitServiceImpl implements EndpointHitService{
+public class EndpointHitServiceImpl implements EndpointHitService {
     @Override
     public void addHit(HitDTO hitDTO) {
         //TODO
