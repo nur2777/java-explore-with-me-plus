@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 @Transactional(readOnly = true)
-public class EndpointHitServiceImpl implements EndpointHitService{
+public class EndpointHitServiceImpl implements EndpointHitService {
 
     private final EndpointHitRepository endpointHitRepository;
 

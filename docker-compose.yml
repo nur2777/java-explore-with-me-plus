@@ -1,11 +1,13 @@
 services:
   stats-server:
+    build: stats-service/service
     image: stats-service
     container_name: stats-service
     ports:
       - "9090:9090"
     depends_on:
-      - stats-db
+      stats-db:
+        condition: service_healthy
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats
       - SPRING_DATASOURCE_USERNAME=dbuser
@@ -13,10 +15,9 @@ services:
 
   stats-db:
     image: postgres:16.1
+    container_name: stats-db
     ports:
-      - "5432:5432"
-    volumes:
-      - ./volumes/postgres/stats/:/var/lib/postgresql/data/
+      - "6541:5432"
     environment:
       - POSTGRES_DB=stats
       - POSTGRES_USER=dbuser
@@ -28,23 +29,24 @@ services:
       retries: 10
 
   ewm-service:
+    build: main-service
     image: main-service
     container_name: main-service
     ports:
       - "8080:8080"
     depends_on:
-      - ewm-db
+      ewm-db:
+        condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5433/ewm
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm
       - SPRING_DATASOURCE_USERNAME=dbuser
       - SPRING_DATASOURCE_PASSWORD=12345
 
   ewm-db:
     image: postgres:16.1
+    container_name: ewm-db
     ports:
-      - "5433:5432"
-    volumes:
-      - ./volumes/postgres/ewm:/var/lib/postgresql/data/
+      - "6542:5432"
     environment:
       - POSTGRES_DB=ewm
       - POSTGRES_USER=dbuser
