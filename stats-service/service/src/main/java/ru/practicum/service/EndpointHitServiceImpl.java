@@ -1,8 +1,8 @@
 package ru.practicum.service;
 
 import ru.practicum.dao.EndpointHitRepository;
-import ru.practicum.dto.HitDTO;
-import ru.practicum.dto.UriStatDTO;
+import ru.practicum.dto.HitDto;
+import ru.practicum.dto.StatDto;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,16 +24,16 @@ public class EndpointHitServiceImpl implements EndpointHitService {
 
     @Override
     @Transactional
-    public void addHit(HitDTO hitDTO) {
+    public void addHit(HitDto hitDTO) {
         if (hitDTO == null) {
             throw new ValidationException("Отсутствует структура с добавляемым запросом hitDTO");
         }
-        EndpointHit endpointHit = EndpointHitMap.HitDtoToEndpointHit(hitDTO);
+        EndpointHit endpointHit = EndpointHitMap.hitDtoToEndpointHit(hitDTO);
         endpointHitRepository.save(endpointHit);
     }
 
     @Override
-    public List<UriStatDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
+    public List<StatDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
         if (start == null) {
             throw new ValidationException("Не указана дата начала диапазона поиска");
         }

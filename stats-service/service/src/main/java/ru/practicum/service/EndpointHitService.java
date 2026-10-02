@@ -1,7 +1,7 @@
 package ru.practicum.service;
 
-import ru.practicum.dto.HitDTO;
-import ru.practicum.dto.UriStatDTO;
+import ru.practicum.dto.HitDto;
+import ru.practicum.dto.StatDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,10 +13,10 @@ public interface EndpointHitService {
     /** Метод создания запроса
      * @param hitDTO данные о запросе
      */
-    void addHit(HitDTO hitDTO);
+    void addHit(HitDto hitDTO);
 
     /** Метод получения статистики по заданным параметрам
      * @return статистика в виде списка запросов
      */
-    List<UriStatDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
+    List<StatDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
 }

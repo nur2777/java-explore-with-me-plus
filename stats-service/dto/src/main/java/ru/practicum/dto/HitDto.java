@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 
+import static ru.practicum.constants.Constants.DATE_TIME_PATTERN;
+
 @Data
 @NoArgsConstructor
 
 public class HitDto {
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-
     /**
      * Идентификатор запроса
      */

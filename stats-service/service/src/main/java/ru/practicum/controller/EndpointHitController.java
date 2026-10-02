@@ -1,7 +1,7 @@
 package ru.practicum.controller;
 
-import ru.practicum.dto.HitDTO;
-import ru.practicum.dto.UriStatDTO;
+import ru.practicum.dto.HitDto;
+import ru.practicum.dto.StatDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +14,7 @@ public interface EndpointHitController {
      * Эндпоинт на создание запроса
      * @param newHit данные нового запроса
      */
-    void addHit(HitDTO newHit);
+    void addHit(HitDto newHit);
 
     /**
      * Эндпоинт получения статистики по заданным параметрам
@@ -24,5 +24,5 @@ public interface EndpointHitController {
      * @param unique Нужно ли учитывать только уникальные посещения (только с уникальным ip)
      * @return объект
      */
-    List<UriStatDTO> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
+    List<StatDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
 }
