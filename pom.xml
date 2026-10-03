@@ -11,8 +11,12 @@
 	</parent>
 
 	<name>Explore With Me</name>
+    <modules>
+        <module>main-service</module>
+        <module>stats-service</module>
+    </modules>
 
-	<groupId>ru.practicum</groupId>
+    <groupId>ru.practicum</groupId>
 	<artifactId>explore-with-me</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -33,32 +37,6 @@
 							<spring.profiles.active>test</spring.profiles.active>
 						</systemPropertyVariables>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>3.1.2</version>
-					<configuration>
-						<configLocation>checkstyle.xml</configLocation>
-						<failOnViolation>true</failOnViolation>
-						<logViolationsToConsole>true</logViolationsToConsole>
-						<includeTestSourceDirectory>true</includeTestSourceDirectory>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>check</goal>
-							</goals>
-							<phase>compile</phase>
-						</execution>
-					</executions>
-					<dependencies>
-						<dependency>
-							<groupId>com.puppycrawl.tools</groupId>
-							<artifactId>checkstyle</artifactId>
-							<version>10.3</version>
-						</dependency>
-					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>com.github.spotbugs</groupId>
@@ -96,6 +74,9 @@
 								<goal>check</goal>
 							</goals>
 							<configuration>
+                                <excludes>
+                                    <exclude>**/exception/**</exclude>
+                                </excludes>
 								<rules>
 									<rule>
 										<element>BUNDLE</element>
@@ -152,10 +133,32 @@
 			<id>check</id>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-checkstyle-plugin</artifactId>
-					</plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <failOnViolation>true</failOnViolation>
+                            <logViolationsToConsole>true</logViolationsToConsole>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <phase>compile</phase>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>10.3</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
 					<plugin>
 						<groupId>com.github.spotbugs</groupId>
 						<artifactId>spotbugs-maven-plugin</artifactId>
