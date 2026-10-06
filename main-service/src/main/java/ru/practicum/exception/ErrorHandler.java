@@ -1,41 +1,51 @@
 package ru.practicum.exception;
 
-import org.springframework.dao.DataIntegrityViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Collections;
+
 @RestControllerAdvice
+@Slf4j
 public class ErrorHandler {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleValidation(final ValidationException e) {
-        return new ErrorResponse("Ошибка валидации данных",e.getMessage());
+    public ApiError handleValidation(final ValidationException e) {
+        log.info("400 {}",e.getMessage(), e);
+        return new ApiError(Collections.emptyList(),"Ошибка валидации данных",
+                e.getMessage(),HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleNotFound(final NotFoundException e) {
-        return new ErrorResponse("Объект не найден",e.getMessage());
+    public ApiError handleNotFound(final NotFoundException e) {
+        log.info("404 {}",e.getMessage(), e);
+        return new ApiError(Collections.emptyList(),"Объект не найден",
+                e.getMessage(),HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleNotFound(final ClientErrorException e) {
-        return new ErrorResponse("Конфликт при обработке запроса",e.getMessage());
+    public ApiError handleNotFound(final ClientErrorException e) {
+        log.info("409 {}",e.getMessage(), e);
+        return new ApiError(Collections.emptyList(),"Конфликт при обработке запроса",
+                e.getMessage(),HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleInternalServerError(final RuntimeException e) {
-        return new ErrorResponse("Ошибка на сервере",e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponse handleDataIntegrity(final DataIntegrityViolationException e) {
-        return new ErrorResponse("Нарушение целостности данных", e.getMessage());
+    public ApiError handleInternalServerError(final RuntimeException e) {
+        log.info("500 {}",e.getMessage(), e);
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        return new ApiError(Collections.singletonList(sw.toString()),"Error .... ",
+                e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
