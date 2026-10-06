@@ -41,9 +41,9 @@ public class UserControllerImpl implements UserController {
     @GetMapping
     @Override
     @ResponseStatus(HttpStatus.OK)
-    public Collection<UserDTO> getAllUsers(@RequestParam(required = false) List<Long> userIds,
+    public Collection<UserDTO> getUsers(@RequestParam(required = false) List<Long> ids,
                                            @RequestParam(defaultValue = "0") Integer from,
                                            @RequestParam(defaultValue = "10") Integer size) {
-        return userService.getUsers(userIds,from,size);
+        return userService.getUsers(ids,from,size);
     }
 }

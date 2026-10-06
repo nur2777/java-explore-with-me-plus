@@ -29,6 +29,6 @@ public interface UserController {
      * @param size количество элементов в наборе
      * @return список пользователей
      */
-    Collection<UserDTO> getAllUsers(List<Long> userIds, Integer from, Integer size);
+    Collection<UserDTO> getUsers(List<Long> userIds, Integer from, Integer size);
 
 }
