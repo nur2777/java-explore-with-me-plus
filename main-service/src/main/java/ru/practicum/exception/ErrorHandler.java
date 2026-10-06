@@ -1,5 +1,6 @@
 package ru.practicum.exception;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -30,5 +31,11 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleInternalServerError(final RuntimeException e) {
         return new ErrorResponse("Ошибка на сервере",e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleDataIntegrity(final DataIntegrityViolationException e) {
+        return new ErrorResponse("Нарушение целостности данных", e.getMessage());
     }
 }
