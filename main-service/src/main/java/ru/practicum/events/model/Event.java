@@ -101,12 +101,17 @@ public class Event {
     @Column(name = "request_moderation")
     private Boolean requestModeration;
 
-
     /**
      * Дата и время публикации события
      */
     @Column(name = "published_datetime")
     private LocalDateTime publishedOn;
+
+    /**
+     * Состояние жизненного цикла события
+     */
+    @Column(name = "state")
+    private String state;
 
     /**
      * Дата и время создания события

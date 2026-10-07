@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS users;
 
 --=================== таблица Пользователи
  CREATE TABLE IF NOT EXISTS users (
@@ -37,7 +37,7 @@ COMMENT ON COLUMN categories.name IS 'Название категории';
               participant_limit INTEGER  NOT NULL,
               request_moderation BOOLEAN,
               title             VARCHAR(120) NOT NULL,
-              published_datetime TIMESTAMP NOT NULL,
+              published_datetime TIMESTAMP,
               state             VARCHAR(20) NOT NULL,
               creation_date     TIMESTAMP NOT NULL
           );
