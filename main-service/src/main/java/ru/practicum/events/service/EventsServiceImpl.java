@@ -42,8 +42,8 @@ public class EventsServiceImpl implements EventsService {
             throw new ValidationException("Данные нового события должны быть заполнены!");
         }
         if (newEventDto.getEventDate() != null && newEventDto.getEventDate().isBefore(LocalDateTime.now().plusHours(2))) {
-            throw new ValidationException("Дата и время на которые намечено событие (" + newEventDto.getEventDate().format(dateTimeFormatter) +") не может быть раньше, " +
-                    "чем через два часа от текущего момента (" + LocalDateTime.now().plusHours(2).format(dateTimeFormatter)+ ")");
+            throw new ValidationException("Дата и время на которые намечено событие (" + newEventDto.getEventDate().format(dateTimeFormatter) + ") не может быть раньше, " +
+                    "чем через два часа от текущего момента (" + LocalDateTime.now().plusHours(2).format(dateTimeFormatter) + ")");
         }
         checkNegativeLimit(newEventDto.getParticipantLimit());
         Event newEvent = EventsMap.newEventDtoToEvent(newEventDto);
@@ -54,7 +54,7 @@ public class EventsServiceImpl implements EventsService {
     }
 
     private static void checkNegativeLimit(Integer limit) {
-        if (limit != null && limit < 0 ) {
+        if (limit != null && limit < 0) {
             throw new ValidationException("Лимит участников не может быть отрицательным");
         }
     }
@@ -74,7 +74,7 @@ public class EventsServiceImpl implements EventsService {
         }
         if (updateEventUserRequest.getEventDate() != null && updateEventUserRequest.getEventDate().isBefore(LocalDateTime.now())) {
             throw new ValidationException("Дата и время на которые намечено событие (" + updateEventUserRequest.getEventDate().format(dateTimeFormatter)
-                    +") не может быть раньше текущего момента (" + LocalDateTime.now().format(dateTimeFormatter)+ ")");
+                    + ") не может быть раньше текущего момента (" + LocalDateTime.now().format(dateTimeFormatter) + ")");
         }
         checkNegativeLimit(updateEventUserRequest.getParticipantLimit());
         EventsMap.updateEventUserRequestToEvent(updateEventUserRequest,event);
