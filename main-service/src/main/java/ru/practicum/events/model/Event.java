@@ -101,4 +101,17 @@ public class Event {
     @Column(name = "request_moderation")
     private Boolean requestModeration;
 
+
+    /**
+     * Дата и время публикации события
+     */
+    @Column(name = "published_datetime")
+    private LocalDateTime publishedOn;
+
+    /**
+     * Дата и время создания события
+     */
+    @Column(name = "creation_date")
+    private LocalDateTime createdOn = LocalDateTime.now();
+
 }
