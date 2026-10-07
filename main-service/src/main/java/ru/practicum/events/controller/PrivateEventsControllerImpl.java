@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.events.dto.EventFullDto;
 import ru.practicum.events.dto.NewEventDto;
+import ru.practicum.events.dto.UpdateEventUserRequest;
 import ru.practicum.events.service.EventsService;
 
 @RestController
@@ -26,7 +27,17 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullDto addNewEvent(@PathVariable Long userId,
                                     @Valid @RequestBody NewEventDto newEventDto) {
-        log.info(" TESTNR start addNewEvent");
         return eventsService.addNewEvent(userId,newEventDto);
     }
+
+    @PatchMapping("/{eventId}")
+    @Override
+    @ResponseStatus(HttpStatus.OK)
+    public EventFullDto userUpdateEvent(@PathVariable Long userId,
+                                        @PathVariable Long eventId,
+                                        @Valid @RequestBody UpdateEventUserRequest updateEventUserRequest) {
+        return eventsService.userUpdateEvent(userId, eventId, updateEventUserRequest);
+    }
+
+
 }
