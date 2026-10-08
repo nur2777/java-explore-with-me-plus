@@ -41,6 +41,12 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
         return eventsService.addNewEvent(userId,newEventDto);
     }
 
+    @GetMapping("/{eventId}")
+    @Override
+    public EventFullDto getOneEvent(Long userId, Long eventId) {
+        return eventsService.getOneEvent(userId, eventId);
+    }
+
     @PatchMapping("/{eventId}")
     @Override
     @ResponseStatus(HttpStatus.OK)

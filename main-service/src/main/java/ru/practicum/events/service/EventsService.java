@@ -29,6 +29,13 @@ public interface EventsService {
      */
     EventFullDto addNewEvent(Long userId, NewEventDto newEventDto);
 
+    /** Метод получает полную информацию о событии добавленном текущим пользователем
+     * @param userId идентификатор пользователя - выполняющего запрос
+     * @param eventId идентификатор события
+     * @return Полная информация о событии
+     */
+    EventFullDto getOneEvent(Long userId, Long eventId);
+
     /** Метод изменения события добавленного текущим пользователем
      * @param userId идентификатор пользователя - изменяющего событие
      * @param eventId идентификатор события

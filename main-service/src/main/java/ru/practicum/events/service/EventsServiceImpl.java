@@ -64,6 +64,14 @@ public class EventsServiceImpl implements EventsService {
     }
 
     @Override
+    public EventFullDto getOneEvent(Long userId, Long eventId) {
+        userCheck(userId);
+        Event event = eventCheck(eventId);
+        //TODO необходимо заполнять confirmedRequests и views
+        return EventsMap.eventFullDtoFromEvent(event);
+    }
+
+    @Override
     @Transactional
     public EventFullDto userUpdateEvent(Long userId, Long eventId, UpdateEventUserRequest updateEventUserRequest) {
         userCheck(userId);

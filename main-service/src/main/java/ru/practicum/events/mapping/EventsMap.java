@@ -103,21 +103,4 @@ public class EventsMap {
         }
     }
 
-
-    public static EventShortDto eventShortDtoFromEvent(Event event) {
-
-        CategoryDto categoryDto = new CategoryDto(event.getCategory().getId(),event.getCategory().getName());
-        UserShortDTO userShortDTO = new UserShortDTO(event.getInitiator().getId(),event.getInitiator().getName());
-        return EventShortDto.builder()
-                .id(event.getId())
-                .annotation(event.getAnnotation())
-                .category(categoryDto)
-                .eventDate(event.getEventDate())
-                .description(event.getDescription())
-                .initiator(userShortDTO)
-                .paid(event.getPaid())
-                .title(event.getTitle())
-                .build();
-    }
-
 }
