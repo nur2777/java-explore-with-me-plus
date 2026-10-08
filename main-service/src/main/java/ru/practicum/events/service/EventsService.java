@@ -1,13 +1,26 @@
 package ru.practicum.events.service;
 
 import ru.practicum.events.dto.EventFullDto;
+import ru.practicum.events.dto.EventShortDto;
 import ru.practicum.events.dto.NewEventDto;
 import ru.practicum.events.dto.UpdateEventUserRequest;
+
+import java.util.List;
 
 /**
  * Интерфейс реализует логику операций для событий
  */
 public interface EventsService {
+
+    /** Метод формирует список событий, добавленных текущим пользователем
+     * @param userId идентификатор пользователя - создателя события
+     * @param from количество элементов, которые нужно пропустить для формирования текущего набора
+     * @param size количество элементов в наборе
+     * @return Список событий
+     */
+    List<EventShortDto> getEvents(Long userId,
+                                  Integer from,
+                                  Integer size);
 
     /** Метод создания нового события
      * @param userId идентификатор пользователя - создателя события

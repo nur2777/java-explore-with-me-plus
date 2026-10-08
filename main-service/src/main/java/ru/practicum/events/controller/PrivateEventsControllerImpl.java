@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.events.dto.EventFullDto;
+import ru.practicum.events.dto.EventShortDto;
 import ru.practicum.events.dto.NewEventDto;
 import ru.practicum.events.dto.UpdateEventUserRequest;
 import ru.practicum.events.service.EventsService;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -20,6 +23,14 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
     @Autowired
     public PrivateEventsControllerImpl(EventsService eventsService) {
         this.eventsService = eventsService;
+    }
+
+    @GetMapping
+    @Override
+    public List<EventShortDto> getEvents(@PathVariable Long userId,
+                                         @RequestParam(defaultValue = "0") Integer from,
+                                         @RequestParam(defaultValue = "10") Integer size) {
+        return eventsService.getEvents(userId, from, size);
     }
 
     @PostMapping
