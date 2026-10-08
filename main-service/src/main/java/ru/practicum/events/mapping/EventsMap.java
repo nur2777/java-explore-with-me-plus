@@ -47,6 +47,22 @@ public class EventsMap {
                 .build();
     }
 
+    public static EventShortDto eventShortDtoFromEvent(Event event) {
+        CategoryDto categoryDto = new CategoryDto(event.getCategory().getId(), event.getCategory().getName());
+        UserShortDTO userShortDTO = new UserShortDTO(event.getInitiator().getId(), event.getInitiator().getName());
+        return EventShortDto.builder()
+                .id(event.getId())
+                .annotation(event.getAnnotation())
+                .category(categoryDto)
+                .confirmedRequests(0)
+                .eventDate(event.getEventDate())
+                .initiator(userShortDTO)
+                .paid(event.getPaid())
+                .title(event.getTitle())
+                .views(0)
+                .build();
+    }
+
     public static void updateEventUserRequestToEvent(UpdateEventUserRequest updateEvent, Event event) {
 
         if (updateEvent.getAnnotation() != null) {

@@ -6,11 +6,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import ru.practicum.constants.Constants;
 import ru.practicum.dto.HitDto;
 import ru.practicum.dto.StatDto;
+import ru.practicum.dto.StatsRequestDto;
 
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @Component
 public class StatsClient {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(Constants.DATE_TIME_PATTERN);
 
     private final RestTemplate restTemplate;
     private final String serverUrl;
@@ -43,15 +44,15 @@ public class StatsClient {
     /**
      * Получить статистику по посещениям (GET /stats)
      */
-    public List<StatDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
+    public List<StatDto> getStats(StatsRequestDto request) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(serverUrl)
                 .path("/stats")
-                .queryParam("start", start.format(FORMATTER))
-                .queryParam("end", end.format(FORMATTER))
-                .queryParam("unique", unique);
+                .queryParam("start", request.getStart().format(FORMATTER))
+                .queryParam("end", request.getEnd().format(FORMATTER))
+                .queryParam("unique", request.isUnique());
 
-        if (uris != null && !uris.isEmpty()) {
-            builder.queryParam("uris", uris.toArray());
+        if (request.getUris() != null && !request.getUris().isEmpty()) {
+            builder.queryParam("uris", request.getUris().toArray());
         }
 
         URI uri = builder.build().encode().toUri();
