@@ -24,4 +24,10 @@ public class AdminCompilationControllerImpl implements AdminCompilationControlle
         return compilationService.addNewCompilation(newCompilationDto);
     }
 
+    @DeleteMapping("/{compId}")
+    @Override
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCompilation(@PathVariable Long compId) {
+        compilationService.deleteCompilation(compId);
+    }
 }

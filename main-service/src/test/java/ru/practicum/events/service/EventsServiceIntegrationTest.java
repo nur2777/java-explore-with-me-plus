@@ -11,6 +11,7 @@ import ru.practicum.categories.model.Category;
 import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.dto.*;
 import ru.practicum.events.model.Event;
+import ru.practicum.events.model.State;
 import ru.practicum.events.model.Location;
 import ru.practicum.exception.ClientErrorException;
 import ru.practicum.users.dao.UserRepository;
@@ -101,7 +102,7 @@ class EventsServiceIntegrationTest {
 
         event.setInitiator(initiator);
         event.setCategory(category);
-        event.setState(state.name());
+        event.setState(state);
         event.setTitle(title);
         event.setAnnotation("Test annotation");
         event.setDescription("Test description");
@@ -312,7 +313,7 @@ class EventsServiceIntegrationTest {
         Event savedEvent = eventRepository.findById(event.getId())
                 .orElseThrow();
 
-        assertEquals(State.PUBLISHED.name(), savedEvent.getState());
+        assertEquals(State.PUBLISHED, savedEvent.getState());
         assertNotNull(savedEvent.getPublishedOn());
     }
 
@@ -350,7 +351,7 @@ class EventsServiceIntegrationTest {
         Event savedEvent = eventRepository.findById(eventId)
                 .orElseThrow();
 
-        assertEquals(State.PUBLISHED.name(), savedEvent.getState());
+        assertEquals(State.PUBLISHED, savedEvent.getState());
     }
 
     @Test
@@ -382,7 +383,7 @@ class EventsServiceIntegrationTest {
         Event savedEvent = eventRepository.findById(event.getId())
                 .orElseThrow();
 
-        assertEquals(State.CANCELED.name(), savedEvent.getState());
+        assertEquals(State.CANCELED, savedEvent.getState());
     }
 
     @Test
@@ -415,6 +416,6 @@ class EventsServiceIntegrationTest {
         Event savedEvent = eventRepository.findById(eventId)
                 .orElseThrow();
 
-        assertEquals(State.CANCELED.name(), savedEvent.getState());
+        assertEquals(State.CANCELED, savedEvent.getState());
     }
 }

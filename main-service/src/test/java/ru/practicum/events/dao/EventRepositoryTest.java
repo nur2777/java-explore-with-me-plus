@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.practicum.events.model.Event;
+import ru.practicum.events.model.State;
 
 import java.time.LocalDateTime;
 
@@ -49,7 +50,7 @@ class EventRepositoryTest {
         // Фильтр по состоянию и категории
         Specification<Event> specification = (root, query, cb) ->
                 cb.and(
-                        cb.equal(root.get("state"), "PUBLISHED"),
+                        cb.equal(root.get("state"), State.PUBLISHED),
                         cb.equal(root.get("category").get("id"), 101L)
                 );
 
@@ -60,7 +61,7 @@ class EventRepositoryTest {
 
         assertEquals(1, result.getTotalElements());
         assertEquals(101L, result.getContent().get(0).getId());
-        assertEquals("PUBLISHED", result.getContent().get(0).getState());
+        assertEquals(State.PUBLISHED, result.getContent().get(0).getState());
         assertEquals(101L,
                 result.getContent().get(0).getCategory().getId());
     }

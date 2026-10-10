@@ -29,4 +29,10 @@ public interface CompilationService {
      * @return подборка
      */
     CompilationDto getCompilationById(Long compId);
+
+    /**
+     * Удаление подборки событий
+     * @param compId идентификатор подборки
+     */
+    void deleteCompilation(Long compId);
 }

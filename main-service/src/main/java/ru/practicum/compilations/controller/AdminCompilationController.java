@@ -11,4 +11,10 @@ public interface AdminCompilationController {
      * @return объект подборки
      */
     CompilationDto addNewCompilation(NewCompilationDto newCompilationDto);
+
+    /**
+     * Эндпоинт удаления подборки событий
+     * @param compId идентификатор подборки
+     */
+    void deleteCompilation(Long compId);
 }

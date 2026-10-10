@@ -61,4 +61,13 @@ public class CompilationServiceImpl implements CompilationService {
                 .orElseThrow(() -> new NotFoundException("Подборка с id " + compId + " не найдена"));
         return CompilationMap.compilationToCompilationDto(compilation);
     }
+
+    @Override
+    @Transactional
+    public void deleteCompilation(Long compId) {
+        if (!compilationRepository.existsById(compId)) {
+            throw new NotFoundException("Подборка с id " + compId + " не найдена");
+        }
+        compilationRepository.deleteById(compId);
+    }
 }

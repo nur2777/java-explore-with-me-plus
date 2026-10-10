@@ -23,6 +23,7 @@ import ru.practicum.dto.StatsRequestDto;
 import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.dto.*;
 import ru.practicum.events.model.Event;
+import ru.practicum.events.model.State;
 import ru.practicum.exception.ClientErrorException;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.exception.ValidationException;
@@ -62,7 +63,7 @@ class EventsServiceImplTest {
     void setUp() {
         event = new Event();
         event.setId(1L);
-        event.setState(State.PENDING.name());
+        event.setState(State.PENDING);
         event.setEventDate(LocalDateTime.now().plusDays(2));
 
         Category category = new Category();
@@ -87,7 +88,7 @@ class EventsServiceImplTest {
 
         EventFullDto result = eventsService.updateAdminEvent(1L, request);
 
-        assertEquals(State.PUBLISHED.name(), event.getState());
+        assertEquals(State.PUBLISHED, event.getState());
         assertNotNull(event.getPublishedOn());
         assertNotNull(result);
 
@@ -115,12 +116,12 @@ class EventsServiceImplTest {
         verify(eventRepository, never()).save(any(Event.class));
 
         // И его состояние не изменилось
-        assertEquals(State.PENDING.name(), event.getState());
+        assertEquals(State.PENDING, event.getState());
     }
 
     @Test
     void updateAdminEvent_shouldRejectAlreadyPublishedEvent() {
-        event.setState(State.PUBLISHED.name());
+        event.setState(State.PUBLISHED);
 
         UpdateEventAdminRequest request = new UpdateEventAdminRequest();
         request.setStateAction(StateAction.PUBLISH_EVENT);
@@ -135,7 +136,7 @@ class EventsServiceImplTest {
 
         verify(eventRepository, never()).save(any(Event.class));
 
-        assertEquals(State.PUBLISHED.name(), event.getState());
+        assertEquals(State.PUBLISHED, event.getState());
     }
 
     @Test
@@ -152,14 +153,14 @@ class EventsServiceImplTest {
         EventFullDto result = eventsService.updateAdminEvent(1L, request);
 
         assertNotNull(result);
-        assertEquals(State.CANCELED.name(), event.getState());
+        assertEquals(State.CANCELED, event.getState());
 
         verify(eventRepository).save(event);
     }
 
     @Test
     void updateAdminEvent_shouldNotRejectPublishedEvent() {
-        event.setState(State.PUBLISHED.name());
+        event.setState(State.PUBLISHED);
 
         UpdateEventAdminRequest request = new UpdateEventAdminRequest();
         request.setStateAction(StateAction.REJECT_EVENT);
@@ -174,7 +175,7 @@ class EventsServiceImplTest {
 
         verify(eventRepository, never()).save(any(Event.class));
 
-        assertEquals(State.PUBLISHED.name(), event.getState());
+        assertEquals(State.PUBLISHED, event.getState());
     }
 
     @Test
@@ -213,7 +214,7 @@ class EventsServiceImplTest {
 
     @Test
     void getPublicEventById_shouldReturnPublishedEvent() {
-        event.setState(State.PUBLISHED.name());
+        event.setState(State.PUBLISHED);
 
         when(eventRepository.findById(1L))
                 .thenReturn(Optional.of(event));
@@ -236,7 +237,7 @@ class EventsServiceImplTest {
 
     @Test
     void getPublicEventById_shouldReturnCorrectViews() {
-        event.setState(State.PUBLISHED.name());
+        event.setState(State.PUBLISHED);
 
         when(eventRepository.findById(1L))
                 .thenReturn(Optional.of(event));
@@ -342,18 +343,18 @@ class EventsServiceImplTest {
     @Test
     void getPublicEvents_shouldSortEventsByViews() {
         // Подготавливаем три опубликованных события
-        event.setState(State.PUBLISHED.name());
+        event.setState(State.PUBLISHED);
 
         Event secondEvent = new Event();
         secondEvent.setId(2L);
-        secondEvent.setState(State.PUBLISHED.name());
+        secondEvent.setState(State.PUBLISHED);
         secondEvent.setEventDate(LocalDateTime.now().plusDays(3));
         secondEvent.setCategory(event.getCategory());
         secondEvent.setInitiator(event.getInitiator());
 
         Event thirdEvent = new Event();
         thirdEvent.setId(3L);
-        thirdEvent.setState(State.PUBLISHED.name());
+        thirdEvent.setState(State.PUBLISHED);
         thirdEvent.setEventDate(LocalDateTime.now().plusDays(4));
         thirdEvent.setCategory(event.getCategory());
         thirdEvent.setInitiator(event.getInitiator());
@@ -403,18 +404,18 @@ class EventsServiceImplTest {
 
     @Test
     void getPublicEvents_shouldApplyPaginationAfterSortingByViews() {
-        event.setState(State.PUBLISHED.name());
+        event.setState(State.PUBLISHED);
 
         Event secondEvent = new Event();
         secondEvent.setId(2L);
-        secondEvent.setState(State.PUBLISHED.name());
+        secondEvent.setState(State.PUBLISHED);
         secondEvent.setEventDate(LocalDateTime.now().plusDays(3));
         secondEvent.setCategory(event.getCategory());
         secondEvent.setInitiator(event.getInitiator());
 
         Event thirdEvent = new Event();
         thirdEvent.setId(3L);
-        thirdEvent.setState(State.PUBLISHED.name());
+        thirdEvent.setState(State.PUBLISHED);
         thirdEvent.setEventDate(LocalDateTime.now().plusDays(4));
         thirdEvent.setCategory(event.getCategory());
         thirdEvent.setInitiator(event.getInitiator());

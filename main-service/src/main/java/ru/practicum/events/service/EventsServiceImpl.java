@@ -504,7 +504,7 @@ public class EventsServiceImpl implements EventsService {
                         new NotFoundException("Событие не найдено: " + eventId)
                 );
 
-        if (!State.PUBLISHED.name().equals(event.getState())) {
+        if (event.getState() != State.PUBLISHED) {
             throw new NotFoundException("Событие не найдено: " + eventId);
         }
 
