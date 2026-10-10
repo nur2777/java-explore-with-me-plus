@@ -1,4 +1,4 @@
-package ru.practicum.events.dto;
+package ru.practicum.events.model;
 
 /**
  * Список состояний жизненного цикла события

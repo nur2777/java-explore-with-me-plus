@@ -3,6 +3,7 @@ package ru.practicum.requests.service;
 import ru.practicum.requests.dto.ParticipationRequestDto;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Интерфейс реализует логику CRUD-операций для сущности Заявка на участие
@@ -28,4 +29,16 @@ public interface RequestService {
      * @return список заявок текущего пользователя на участие в чужих событиях
      */
     Collection<ParticipationRequestDto> getRequests(Long userId);
+
+    /** Метод получения списка заявок для указанного события
+     * @param eventId идентификатор события
+     * @return список заявок для события
+     */
+    List<ParticipationRequestDto> getRequestsByEvent(Long eventId);
+
+    /** Метод получения списка заявок для по списку идентификаторов
+     * @param requestIds список идентификаторов
+     * @return список заявок для события
+     */
+    List<ParticipationRequestDto> getRequestsByIds(List<Long> requestIds);
 }

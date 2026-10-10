@@ -47,8 +47,9 @@ public class Request {
     /**
      * Статус заявки
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private RequestStatus status;
 
     /**
      * Дата и время создания заявки

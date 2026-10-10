@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import static ru.practicum.constants.Constants.DATE_TIME_PATTERN;
 
 /**
- * DTO для краткой информации о событии
+ * DTO для короткого описания события
  */
 @Data
 @Builder
@@ -42,10 +42,15 @@ public class EventShortDto {
     private Integer confirmedRequests;
 
     /**
-     * Дата и время на которые намечено событие (в формате "yyyy-MM-dd HH:mm:ss")
+     * Дата и время на которые намечено событие. Дата и время указываются в формате "yyyy-MM-dd HH:mm:ss"
      */
     @JsonFormat(pattern = DATE_TIME_PATTERN)
     private LocalDateTime eventDate;
+
+    /**
+     * Полное описание события
+     */
+    private String description;
 
     /**
      * Пользователь (краткая информация)

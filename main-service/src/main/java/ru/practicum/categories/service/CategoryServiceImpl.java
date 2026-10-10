@@ -9,11 +9,14 @@ import ru.practicum.categories.dao.CategoryRepository;
 import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.mapping.CategoryMap;
 import ru.practicum.categories.model.Category;
+import ru.practicum.events.dao.EventRepository;
+import ru.practicum.events.model.Event;
 import ru.practicum.exception.ClientErrorException;
 import ru.practicum.exception.NotFoundException;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @Service
@@ -23,6 +26,7 @@ import java.util.Collection;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final EventRepository eventRepository;
 
     @Override
     @Transactional
@@ -43,6 +47,10 @@ public class CategoryServiceImpl implements CategoryService {
     public void deleteCategory(Long catId) {
         if (!categoryRepository.existsById(catId)) {
             throw new NotFoundException("Категория с id " + catId + " не найдена");
+        }
+        List<Event> events = eventRepository.findByCategoryId(catId);
+        if (events != null && !events.isEmpty()) {
+            throw new ClientErrorException("Существуют события, связанные с категорией");
         }
         categoryRepository.deleteById(catId);
     }

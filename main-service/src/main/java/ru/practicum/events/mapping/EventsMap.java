@@ -4,6 +4,7 @@ import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.model.Category;
 import ru.practicum.events.dto.*;
 import ru.practicum.events.model.Event;
+import ru.practicum.events.model.State;
 import ru.practicum.users.dto.UserShortDTO;
 
 public class EventsMap {
@@ -28,7 +29,7 @@ public class EventsMap {
 
         CategoryDto categoryDto = new CategoryDto(event.getCategory().getId(),event.getCategory().getName());
         UserShortDTO userShortDTO = new UserShortDTO(event.getInitiator().getId(),event.getInitiator().getName());
-        State state = State.valueOf(event.getState());
+        State state = event.getState();
         return EventFullDto.builder()
                 .id(event.getId())
                 .annotation(event.getAnnotation())
@@ -93,13 +94,14 @@ public class EventsMap {
         }
         if (updateEvent.getStateAction() != null) {
             if (updateEvent.getStateAction().equals(StateAction.CANCEL_REVIEW)) {
-                event.setState(State.CANCELED.name());
+                event.setState(State.CANCELED);
             } else if (updateEvent.getStateAction().equals(StateAction.SEND_TO_REVIEW)) {
-                event.setState(State.PENDING.name());
+                event.setState(State.PENDING);
             }
         }
         if (updateEvent.getTitle() != null) {
             event.setTitle(updateEvent.getTitle());
         }
     }
+
 }
