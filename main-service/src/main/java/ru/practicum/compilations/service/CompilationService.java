@@ -1,10 +1,18 @@
 package ru.practicum.compilations.service;
 
 import ru.practicum.compilations.dto.CompilationDto;
+import ru.practicum.compilations.dto.NewCompilationDto;
 
 import java.util.List;
 
 public interface CompilationService {
+
+    /**
+     * Добавление новой подборки событий
+     * @param newCompilationDto  данные о новой подборке
+     * @return объект подборки
+     */
+    CompilationDto addNewCompilation(NewCompilationDto newCompilationDto);
 
     /**
      * Получение подборок событий

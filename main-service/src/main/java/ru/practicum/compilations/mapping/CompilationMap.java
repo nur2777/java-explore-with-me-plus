@@ -1,6 +1,7 @@
 package ru.practicum.compilations.mapping;
 
 import ru.practicum.compilations.dto.CompilationDto;
+import ru.practicum.compilations.dto.NewCompilationDto;
 import ru.practicum.compilations.model.Compilation;
 import ru.practicum.events.mapping.EventsMap;
 
@@ -17,5 +18,12 @@ public class CompilationMap {
                         .map(EventsMap::eventShortDtoFromEvent)
                         .collect(Collectors.toSet()))
                 .build();
+    }
+
+    public static Compilation newCompilationDtoToCompilation(NewCompilationDto newCompilationDto) {
+        Compilation compilation = new Compilation();
+        compilation.setPinned(newCompilationDto.getPinned());
+        compilation.setTitle(newCompilationDto.getTitle());
+        return compilation;
     }
 }

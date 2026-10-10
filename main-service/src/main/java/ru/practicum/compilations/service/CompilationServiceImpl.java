@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.compilations.dao.CompilationRepository;
 import ru.practicum.compilations.dto.CompilationDto;
+import ru.practicum.compilations.dto.NewCompilationDto;
 import ru.practicum.compilations.mapping.CompilationMap;
 import ru.practicum.compilations.model.Compilation;
+import ru.practicum.events.dao.EventRepository;
+import ru.practicum.events.model.Event;
 import ru.practicum.exception.NotFoundException;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -21,6 +26,21 @@ import java.util.List;
 public class CompilationServiceImpl implements CompilationService {
 
     private final CompilationRepository compilationRepository;
+    private final EventRepository eventRepository;
+
+    @Override
+    @Transactional
+    public CompilationDto addNewCompilation(NewCompilationDto newCompilationDto) {
+        Compilation compilation = CompilationMap.newCompilationDtoToCompilation(newCompilationDto);
+        Set<Long> uniquesEventIds = new HashSet<>();
+        if (newCompilationDto.getEvents() != null) {
+            uniquesEventIds = new HashSet<>(newCompilationDto.getEvents());
+        }
+
+        Set<Event> events = eventRepository.findByIdIn(uniquesEventIds);
+        compilation.setEvents(events);
+        return CompilationMap.compilationToCompilationDto(compilationRepository.save(compilation));
+    }
 
     @Override
     public List<CompilationDto> getCompilations(Boolean pinned, Integer from, Integer size) {
