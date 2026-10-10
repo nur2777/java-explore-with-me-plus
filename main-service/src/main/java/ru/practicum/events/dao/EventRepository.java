@@ -12,4 +12,6 @@ public interface EventRepository extends
         JpaSpecificationExecutor<Event> {
 
     List<Event> findAllByInitiatorId(Long userId, Pageable pageable);
+
+    List<Event> findByCategoryId(Long categoryId);
 }

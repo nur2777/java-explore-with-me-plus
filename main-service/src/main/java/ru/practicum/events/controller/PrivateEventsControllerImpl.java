@@ -42,7 +42,8 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
 
     @GetMapping("/{eventId}")
     @Override
-    public EventFullDto getOneEvent(Long userId, Long eventId) {
+    public EventFullDto getOneEvent(@PathVariable Long userId,
+                                    @PathVariable Long eventId) {
         return eventsService.getOneEvent(userId, eventId);
     }
 

@@ -102,9 +102,12 @@ public class EventsServiceImpl implements EventsService {
         if (!Objects.equals(userId,event.getInitiator().getId())) {
             throw new ValidationException("Пользователь выполняющий изменение не является инициатором события. Редактировать событие может только его инициатор.");
         }
-        if (updateEventUserRequest.getEventDate() != null && updateEventUserRequest.getEventDate().isBefore(LocalDateTime.now())) {
+        if (!event.getState().equals(State.PENDING) && !event.getState().equals(State.CANCELED)) {
+            throw new ClientErrorException("Изменить можно только отмененные события или события в состоянии ожидания модерации!");
+        }
+        if (updateEventUserRequest.getEventDate() != null && updateEventUserRequest.getEventDate().isBefore(LocalDateTime.now().plusHours(2))) {
             throw new ValidationException("Дата и время на которые намечено событие (" + updateEventUserRequest.getEventDate().format(dateTimeFormatter)
-                    + ") не может быть раньше текущего момента (" + LocalDateTime.now().format(dateTimeFormatter) + ")");
+                    + ") не может быть раньше, чем через два часа от текущего момента (" + LocalDateTime.now().plusHours(2).format(dateTimeFormatter) + ")");
         }
         checkNegativeLimit(updateEventUserRequest.getParticipantLimit());
         EventsMap.updateEventUserRequestToEvent(updateEventUserRequest,event);
@@ -259,6 +262,11 @@ public class EventsServiceImpl implements EventsService {
             throw new ValidationException("Данные обновления отсутствуют");
         }
 
+        // Проверяем новую дату, не должна быть уже наступившей
+        if (request.getEventDate() != null && request.getEventDate().isBefore(LocalDateTime.now())) {
+            throw new ValidationException("Новая дата события не должна быть уже наступившей, т.е. она должна быть в будущем");
+        }
+
         // Проверяем новую дату, если администратор её передал
         if (request.getEventDate() != null
                 && request.getEventDate().isBefore(LocalDateTime.now().plusHours(1))) {
@@ -269,14 +277,14 @@ public class EventsServiceImpl implements EventsService {
 
         // Проверяем возможность изменения состояния
         if (request.getStateAction() == StateAction.PUBLISH_EVENT
-                && !State.PENDING.name().equals(event.getState())) {
+                && !State.PENDING.equals(event.getState())) {
             throw new ClientErrorException(
                     "Публиковать можно только события в состоянии PENDING"
             );
         }
 
         if (request.getStateAction() == StateAction.REJECT_EVENT
-                && State.PUBLISHED.name().equals(event.getState())) {
+                && State.PUBLISHED.equals(event.getState())) {
             throw new ClientErrorException(
                     "Нельзя отклонить опубликованное событие"
             );

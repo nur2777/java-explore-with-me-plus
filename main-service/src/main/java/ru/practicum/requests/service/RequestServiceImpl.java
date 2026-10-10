@@ -45,16 +45,17 @@ public class RequestServiceImpl implements RequestService {
         if (requestRepository.findByRequesterIdAndEventId(userId, eventId).isPresent()) {
             throw new ClientErrorException("Запрос на участие в данном событии уже подан.  Повторный запрос нельзя отправлять.");
         }
-        if (event.getParticipantLimit() != null && event.getParticipantLimit() != 0 && requestRepository.countByEventId(eventId) >= event.getParticipantLimit()) {
+        if (event.getParticipantLimit() != null && event.getParticipantLimit() != 0
+                && requestRepository.countByEventIdAndStatus(eventId,RequestStatus.CONFIRMED) >= event.getParticipantLimit()) {
             throw new ClientErrorException("У события достигнут лимит запросов на участие. Лимит:" + event.getParticipantLimit());
         }
         Request request = new Request();
         request.setEvent(event);
         request.setRequester(user);
-        if (event.getRequestModeration()) {
-            request.setStatus(RequestStatus.PENDING);
-        } else {
+        if (!event.getRequestModeration() || (event.getParticipantLimit() != null && event.getParticipantLimit() == 0)) {
             request.setStatus(RequestStatus.CONFIRMED);
+        } else {
+            request.setStatus(RequestStatus.PENDING);
         }
         return RequestMap.requestToParticipationRequestDto(requestRepository.save(request));
     }
@@ -65,7 +66,7 @@ public class RequestServiceImpl implements RequestService {
         userCheck(userId);
         EwmUtils.idIsNullCheck(requestId,"Идентификатор заявки requestId");
         Request request = requestRepository.findById(requestId).orElseThrow(() -> new NotFoundException("Заявка с id " + requestId + " не найдена "));
-        request.setStatus(RequestStatus.REJECTED);
+        request.setStatus(RequestStatus.CANCELED);
         return RequestMap.requestToParticipationRequestDto(requestRepository.save(request));
     }
 
