@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import ru.practicum.events.model.Event;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

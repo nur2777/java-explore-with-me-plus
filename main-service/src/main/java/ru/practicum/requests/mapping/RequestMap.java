@@ -11,7 +11,7 @@ public class RequestMap {
                 .id(request.getId())
                 .event(request.getEvent().getId())
                 .requester(request.getRequester().getId())
-                .status(request.getStatus())
+                .status(request.getStatus().name())
                 .created(request.getCreated())
                 .build();
     }

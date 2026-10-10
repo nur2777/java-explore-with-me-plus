@@ -20,10 +20,16 @@ import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.dto.*;
 import ru.practicum.events.mapping.EventsMap;
 import ru.practicum.events.model.Event;
-import ru.practicum.events.pagination.OffsetBasedPageRequest;
+import ru.practicum.events.model.State;
 import ru.practicum.exception.ClientErrorException;
+import ru.practicum.events.pagination.OffsetBasedPageRequest;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.exception.ValidationException;
+import ru.practicum.requests.dao.RequestRepository;
+import ru.practicum.requests.dto.ParticipationRequestDto;
+import ru.practicum.requests.mapping.RequestMap;
+import ru.practicum.requests.model.Request;
+import ru.practicum.requests.model.RequestStatus;
 import ru.practicum.users.dao.UserRepository;
 import ru.practicum.users.model.User;
 
@@ -40,6 +46,7 @@ public class EventsServiceImpl implements EventsService {
 
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final RequestRepository requestRepository;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
     private final StatsClient statsClient;
     private final CategoryRepository categoryRepository;
@@ -70,7 +77,7 @@ public class EventsServiceImpl implements EventsService {
         checkNegativeLimit(newEventDto.getParticipantLimit());
         Event newEvent = EventsMap.newEventDtoToEvent(newEventDto);
         newEvent.setInitiator(initiator);
-        newEvent.setState(State.PENDING.name());
+        newEvent.setState(State.PENDING);
         Event createdEvent = eventRepository.save(newEvent);
         //TODO необходимо заполнять confirmedRequests и views
         return EventsMap.eventFullDtoFromEvent(createdEvent);
@@ -104,6 +111,74 @@ public class EventsServiceImpl implements EventsService {
         Event updatedEvent = eventRepository.save(event);
         //TODO необходимо заполнять confirmedRequests и views
         return EventsMap.eventFullDtoFromEvent(updatedEvent);
+    }
+
+    @Override
+    public Collection<ParticipationRequestDto> getEventRequests(Long userId, Long eventId) {
+        userCheck(userId);
+        Event event = eventCheck(eventId);
+        if (!Objects.equals(userId,event.getInitiator().getId())) {
+            throw new ValidationException("Пользователь выполняющий запрос не является инициатором события. Запрос может делать только его инициатор.");
+        }
+        List<Request> requests = requestRepository.findAllByEventId(eventId);
+        return requests.stream().map(RequestMap::requestToParticipationRequestDto).toList();
+    }
+
+    @Override
+    @Transactional
+    public EventRequestStatusUpdateResult userConfirmRejectRequest(Long userId, Long eventId,
+                                                                   EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest) {
+        userCheck(userId);
+        Event event = eventCheck(eventId);
+        if (!Objects.equals(userId,event.getInitiator().getId())) {
+            throw new ValidationException("Пользователь выполняющий изменение не является инициатором события. Изменение может делать только его инициатор.");
+        }
+        if (eventRequestStatusUpdateRequest == null) {
+            throw new ValidationException("Список заявок на подтверждение/отклонение пуст");
+        }
+        EventRequestStatusUpdateResult result = new EventRequestStatusUpdateResult();
+        List<Long> requestIds = eventRequestStatusUpdateRequest.getRequestIds();
+        //List<Request> confirmedReqs = requestRepository.findAllByEventIdAndStatus(eventId,RequestStatus.CONFIRMED);
+        Long confirmedReqsCount = requestRepository.countByEventIdAndStatus(eventId,RequestStatus.CONFIRMED);
+        if (eventRequestStatusUpdateRequest.getStatus().equals(RequestStatus.CONFIRMED)) {
+            //если для события лимит заявок равен 0 или отключена пре-модерация заявок, то подтверждение заявок не требуется
+            if (event.getParticipantLimit() != null && event.getParticipantLimit() == 0
+                    || !event.getRequestModeration()) {
+                List<Request> requests = requestRepository.findByIdIn(requestIds);
+                result.setConfirmedRequests(requests.stream().map(RequestMap::requestToParticipationRequestDto).toList());
+                return result;
+            }
+            //нельзя подтвердить заявку, если уже достигнут лимит по заявкам на данное событие
+            if (event.getParticipantLimit() != null  && confirmedReqsCount >= event.getParticipantLimit()) {
+                throw new ClientErrorException("Достигнут лимит по заявкам на данное событие.");
+            }
+        }
+        List<Request> requests = requestRepository.findByIdIn(requestIds);
+        List<Request> confirmedRequests = new ArrayList<>();
+        List<Request> rejectedRequests = new ArrayList<>();
+        if (requests != null && !requests.isEmpty()) {
+            for (Request request : requests) {
+                //статус можно изменить только у заявок, находящихся в состоянии ожидания
+                if (!request.getStatus().equals(RequestStatus.PENDING)) {
+                    throw new ClientErrorException("Статус можно изменить только у заявки, находящейся в состоянии ожидания.");
+                }
+                // если текущий пользователь при подтверждении данной заявки, лимит заявок для события исчерпан, то все неподтверждённые заявки необходимо отклонить
+                if (eventRequestStatusUpdateRequest.getStatus().equals(RequestStatus.REJECTED) ||
+                        requestRepository.countByEventIdAndStatus(eventId, RequestStatus.CONFIRMED) >= event.getParticipantLimit()) {
+                    request.setStatus(RequestStatus.REJECTED);
+                    rejectedRequests.add(request);
+                } else {
+                    request.setStatus(RequestStatus.CONFIRMED);
+                    confirmedRequests.add(request);
+                }
+                requestRepository.saveAndFlush(request);
+            }
+            result.setConfirmedRequests(confirmedRequests.stream().map(RequestMap::requestToParticipationRequestDto).toList());
+            result.setRejectedRequests(rejectedRequests.stream().map(RequestMap::requestToParticipationRequestDto).toList());
+            return result;
+        } else {
+            throw new ClientErrorException("Не найдены существующие заявки по заданному списку");
+        }
     }
 
     @Override
@@ -260,12 +335,12 @@ public class EventsServiceImpl implements EventsService {
                 );
             }
 
-            event.setState(State.PUBLISHED.name());
+            event.setState(State.PUBLISHED);
             event.setPublishedOn(LocalDateTime.now());
         }
 
         if (request.getStateAction() == StateAction.REJECT_EVENT) {
-            event.setState(State.CANCELED.name());
+            event.setState(State.CANCELED);
         }
 
         return EventsMap.eventFullDtoFromEvent(eventRepository.save(event));

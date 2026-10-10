@@ -110,8 +110,9 @@ public class Event {
     /**
      * Состояние жизненного цикла события
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    private String state;
+    private State state;
 
     /**
      * Дата и время создания события

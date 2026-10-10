@@ -1,8 +1,8 @@
 package ru.practicum.events.controller;
 
 import ru.practicum.events.dto.EventFullDto;
-import ru.practicum.events.dto.State;
 import ru.practicum.events.dto.UpdateEventAdminRequest;
+import ru.practicum.events.model.State;
 
 import java.time.LocalDateTime;
 import java.util.List;

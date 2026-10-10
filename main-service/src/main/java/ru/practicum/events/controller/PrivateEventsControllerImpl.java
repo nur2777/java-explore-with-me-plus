@@ -5,12 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.events.dto.EventFullDto;
-import ru.practicum.events.dto.EventShortDto;
-import ru.practicum.events.dto.NewEventDto;
-import ru.practicum.events.dto.UpdateEventUserRequest;
+import ru.practicum.events.dto.*;
 import ru.practicum.events.service.EventsService;
+import ru.practicum.requests.dto.ParticipationRequestDto;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -56,5 +55,21 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
         return eventsService.userUpdateEvent(userId, eventId, updateEventUserRequest);
     }
 
+    @GetMapping("/{eventId}/requests")
+    @Override
+    @ResponseStatus(HttpStatus.OK)
+    public Collection<ParticipationRequestDto> getEventRequests(@PathVariable Long userId,
+                                                                @PathVariable Long eventId) {
+        return eventsService.getEventRequests(userId, eventId);
+    }
 
+
+    @PatchMapping("/{eventId}/requests")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public EventRequestStatusUpdateResult userConfirmRejectRequest(@PathVariable Long userId,
+                                                                   @PathVariable Long eventId,
+                                                                   @RequestBody EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest) {
+        return eventsService.userConfirmRejectRequest(userId, eventId, eventRequestStatusUpdateRequest);
+    }
 }

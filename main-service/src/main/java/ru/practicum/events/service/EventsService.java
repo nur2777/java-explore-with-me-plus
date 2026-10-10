@@ -1,8 +1,11 @@
 package ru.practicum.events.service;
 
 import ru.practicum.events.dto.*;
+import ru.practicum.events.model.State;
+import ru.practicum.requests.dto.ParticipationRequestDto;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -41,6 +44,23 @@ public interface EventsService {
      * @return полное описание созданного события
      */
     EventFullDto userUpdateEvent(Long userId, Long eventId, UpdateEventUserRequest updateEventUserRequest);
+
+    /** Метод для получения списка запросов на участие в событии текущего пользователя
+     * @param userId идентификатор текущего пользователя
+     * @param eventId идентификатор события
+     * @return список запросов на участие
+     */
+    Collection<ParticipationRequestDto> getEventRequests(Long userId, Long eventId);
+
+    /** Метод изменения статуса (подтверждена, отменена) заявок на участие в событии текущего пользователя
+     * @param userId идентификатор пользователя - владельца события
+     * @param eventId идентификатор события
+     * @param eventRequestStatusUpdateRequest список заявок на подтверждение или отказ
+     * @return результат обработки запроса
+     */
+    EventRequestStatusUpdateResult userConfirmRejectRequest(Long userId,
+                                                            Long eventId,
+                                                            EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest);
 
     List<EventFullDto> getAdminEvents(
             List<Long> users,
