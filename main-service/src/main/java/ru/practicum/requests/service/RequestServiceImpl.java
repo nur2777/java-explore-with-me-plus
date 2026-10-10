@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.common.EwmUtils;
 import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.model.Event;
+import ru.practicum.exception.ClientErrorException;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.requests.dao.RequestRepository;
 import ru.practicum.requests.dto.ParticipationRequestDto;
@@ -34,11 +35,27 @@ public class RequestServiceImpl implements RequestService {
         EwmUtils.idIsNullCheck(userId,"Идентификатор пользователя userId");
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Пользователь с id " + userId + " не найден "));
         EwmUtils.idIsNullCheck(eventId,"Идентификатор события eventId");
-        Event event = eventRepository.findById(eventId).orElseThrow(() -> new NotFoundException("Событие с id " + eventId + " не найдено "));
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new ClientErrorException("Событие с id " + eventId + " не найдено "));
+        if (userId.equals(event.getInitiator().getId())) {
+            throw new ClientErrorException("Инициатор события не может добавить запрос на участие в своём событии");
+        }
+        if (event.getState().equals("PENDING")) {
+            throw new ClientErrorException("Нельзя участвовать в неопубликованном событии.");
+        }
+        if (requestRepository.findByRequesterIdAndEventId(userId, eventId).isPresent()) {
+            throw new ClientErrorException("Запрос на участие в данном событии уже подан.  Повторный запрос нельзя отправлять.");
+        }
+        if (event.getParticipantLimit() != null && event.getParticipantLimit() != 0 && requestRepository.countByEventId(eventId) >= event.getParticipantLimit()) {
+            throw new ClientErrorException("У события достигнут лимит запросов на участие. Лимит:" + event.getParticipantLimit());
+        }
         Request request = new Request();
         request.setEvent(event);
         request.setRequester(user);
-        request.setStatus("PENDING");
+        if (event.getRequestModeration()) {
+            request.setStatus("PENDING");
+        } else {
+            request.setStatus("CONFIRMED");
+        }
         return RequestMap.requestToParticipationRequestDto(requestRepository.save(request));
     }
 
@@ -48,7 +65,7 @@ public class RequestServiceImpl implements RequestService {
         EwmUtils.idIsNullCheck(userId,"Идентификатор пользователя userId");
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Пользователь с id " + userId + " не найден "));
         EwmUtils.idIsNullCheck(requestId,"Идентификатор заявки requestId");
-        Request request = requestRepository.findById(requestId).orElseThrow(() -> new NotFoundException("Заяявка с id " + requestId + " не найдена "));
+        Request request = requestRepository.findById(requestId).orElseThrow(() -> new NotFoundException("Заявка с id " + requestId + " не найдена "));
         request.setStatus("CANCELED");
         return RequestMap.requestToParticipationRequestDto(requestRepository.save(request));
     }

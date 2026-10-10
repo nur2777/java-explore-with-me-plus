@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS requests;
 DROP TABLE IF EXISTS compilation_events;
 DROP TABLE IF EXISTS events;
 DROP TABLE IF EXISTS users;
