@@ -1,10 +1,8 @@
 package ru.practicum.events.service;
 
-import ru.practicum.events.dto.EventFullDto;
-import ru.practicum.events.dto.EventShortDto;
-import ru.practicum.events.dto.NewEventDto;
-import ru.practicum.events.dto.UpdateEventUserRequest;
+import ru.practicum.events.dto.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -43,4 +41,31 @@ public interface EventsService {
      * @return полное описание созданного события
      */
     EventFullDto userUpdateEvent(Long userId, Long eventId, UpdateEventUserRequest updateEventUserRequest);
+
+    List<EventFullDto> getAdminEvents(
+            List<Long> users,
+            List<State> states,
+            List<Long> categories,
+            LocalDateTime rangeStart,
+            LocalDateTime rangeEnd,
+            Integer from,
+            Integer size
+    );
+
+    EventFullDto updateAdminEvent(Long eventId, UpdateEventAdminRequest request);
+
+    List<EventShortDto> getPublicEvents(
+            String text,
+            List<Long> categories,
+            Boolean paid,
+            LocalDateTime rangeStart,
+            LocalDateTime rangeEnd,
+            Boolean onlyAvailable,
+            String sort,
+            Integer from,
+            Integer size,
+            String ip
+    );
+
+    EventFullDto getPublicEventById(Long eventId, String ip);
 }
