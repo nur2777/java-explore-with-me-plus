@@ -22,7 +22,7 @@ public class CompilationMap {
 
     public static Compilation newCompilationDtoToCompilation(NewCompilationDto newCompilationDto) {
         Compilation compilation = new Compilation();
-        compilation.setPinned(newCompilationDto.getPinned());
+        compilation.setPinned(newCompilationDto.getPinned() != null ? newCompilationDto.getPinned() : false);
         compilation.setTitle(newCompilationDto.getTitle());
         return compilation;
     }

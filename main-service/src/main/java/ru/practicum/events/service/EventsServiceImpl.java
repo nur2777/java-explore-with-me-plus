@@ -79,15 +79,20 @@ public class EventsServiceImpl implements EventsService {
         newEvent.setInitiator(initiator);
         newEvent.setState(State.PENDING);
         Event createdEvent = eventRepository.save(newEvent);
-        //TODO необходимо заполнять confirmedRequests и views
-        return EventsMap.eventFullDtoFromEvent(createdEvent);
+        EventFullDto eventFullDto = EventsMap.eventFullDtoFromEvent(createdEvent);
+        return eventFullDto;
     }
 
     @Override
     public EventFullDto getOneEvent(Long userId, Long eventId) {
         userCheck(userId);
         Event event = eventCheck(eventId);
-        //TODO необходимо заполнять confirmedRequests и views
+        EventFullDto eventFullDto = EventsMap.eventFullDtoFromEvent(event);
+        eventFullDto.setConfirmedRequests(requestRepository.countByEventIdAndStatus(eventId,RequestStatus.CONFIRMED));
+        Map<String, Long> views = getEventViews(List.of(event));
+        String uri = "/events/" + eventId;
+        long count = views.getOrDefault(uri, 0L);
+        eventFullDto.setViews(count);
         return EventsMap.eventFullDtoFromEvent(event);
     }
 
@@ -112,8 +117,13 @@ public class EventsServiceImpl implements EventsService {
         checkNegativeLimit(updateEventUserRequest.getParticipantLimit());
         EventsMap.updateEventUserRequestToEvent(updateEventUserRequest,event);
         Event updatedEvent = eventRepository.save(event);
-        //TODO необходимо заполнять confirmedRequests и views
-        return EventsMap.eventFullDtoFromEvent(updatedEvent);
+        EventFullDto eventFullDto = EventsMap.eventFullDtoFromEvent(event);
+        eventFullDto.setConfirmedRequests(requestRepository.countByEventIdAndStatus(eventId,RequestStatus.CONFIRMED));
+        Map<String, Long> views = getEventViews(List.of(event));
+        String uri = "/events/" + eventId;
+        long count = views.getOrDefault(uri, 0L);
+        eventFullDto.setViews(count);
+        return eventFullDto;
     }
 
     @Override
@@ -526,8 +536,8 @@ public class EventsServiceImpl implements EventsService {
                 .sum();
 
         EventFullDto dto = EventsMap.eventFullDtoFromEvent(event);
-        dto.setViews(Math.toIntExact(views));
-        dto.setConfirmedRequests(0);
+        dto.setViews(views);
+        dto.setConfirmedRequests(requestRepository.countByEventIdAndStatus(eventId,RequestStatus.CONFIRMED));
 
         return dto;
     }

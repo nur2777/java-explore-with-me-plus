@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.compilations.dao.CompilationRepository;
 import ru.practicum.compilations.dto.CompilationDto;
 import ru.practicum.compilations.dto.NewCompilationDto;
+import ru.practicum.compilations.dto.UpdateCompilationDto;
 import ru.practicum.compilations.mapping.CompilationMap;
 import ru.practicum.compilations.model.Compilation;
 import ru.practicum.events.dao.EventRepository;
@@ -36,9 +37,27 @@ public class CompilationServiceImpl implements CompilationService {
         if (newCompilationDto.getEvents() != null) {
             uniquesEventIds = new HashSet<>(newCompilationDto.getEvents());
         }
-
         Set<Event> events = eventRepository.findByIdIn(uniquesEventIds);
         compilation.setEvents(events);
+        return CompilationMap.compilationToCompilationDto(compilationRepository.save(compilation));
+    }
+
+    @Override
+    @Transactional
+    public CompilationDto updateCompilation(Long compId, UpdateCompilationDto updateCompilationDto) {
+        Compilation compilation = compilationRepository.findById(compId)
+                .orElseThrow(() -> new NotFoundException("Подборка с id " + compId + " не найдена"));
+        if (updateCompilationDto.getTitle() != null) {
+            compilation.setTitle(updateCompilationDto.getTitle());
+        }
+        if (updateCompilationDto.getPinned() != null) {
+            compilation.setPinned(updateCompilationDto.getPinned());
+        }
+        if (updateCompilationDto.getEvents() != null) {
+            Set<Long> uniquesEventIds = new HashSet<>(updateCompilationDto.getEvents());
+            Set<Event> events = eventRepository.findByIdIn(uniquesEventIds);
+            compilation.setEvents(events);
+        }
         return CompilationMap.compilationToCompilationDto(compilationRepository.save(compilation));
     }
 

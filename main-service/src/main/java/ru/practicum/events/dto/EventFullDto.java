@@ -38,7 +38,8 @@ public class EventFullDto {
     /**
      * Количество одобренных заявок на участие в данном событии
      */
-    private Integer confirmedRequests;
+    @Builder.Default
+    private Long confirmedRequests = 0L;
 
     /**
      * Дата и время создания события (в формате "yyyy-MM-dd HH:mm:ss")
@@ -104,5 +105,6 @@ public class EventFullDto {
     /**
      * Количество просмотров события
      */
-    private Integer views;
+    @Builder.Default
+    private Long views = 0L;
 }

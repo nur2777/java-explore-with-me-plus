@@ -2,6 +2,7 @@ package ru.practicum.compilations.service;
 
 import ru.practicum.compilations.dto.CompilationDto;
 import ru.practicum.compilations.dto.NewCompilationDto;
+import ru.practicum.compilations.dto.UpdateCompilationDto;
 
 import java.util.List;
 
@@ -13,6 +14,13 @@ public interface CompilationService {
      * @return объект подборки
      */
     CompilationDto addNewCompilation(NewCompilationDto newCompilationDto);
+
+    /**
+     * Эндпоинт обновления  подборки событий
+     * @param updateCompilationDto  данные о новой подборке
+     * @return объект подборки
+     */
+    CompilationDto updateCompilation(Long compId, UpdateCompilationDto updateCompilationDto);
 
     /**
      * Получение подборок событий
