@@ -92,11 +92,7 @@ class UserControllerImplTest {
 
     @Test
     void addUserShouldRejectMissingEmail() throws Exception {
-        String json = """
-                {
-                  "name": "Daniel"
-                }
-                """;
+        String json = "{\"name\": \"Daniel\"}";
 
         mockMvc.perform(post("/admin/users")
                         .contentType(MediaType.APPLICATION_JSON)
