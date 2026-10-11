@@ -27,6 +27,7 @@ import ru.practicum.events.model.State;
 import ru.practicum.exception.ClientErrorException;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.exception.ValidationException;
+import ru.practicum.requests.dao.RequestRepository;
 import ru.practicum.users.dao.UserRepository;
 import ru.practicum.users.model.User;
 
@@ -47,6 +48,9 @@ class EventsServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private RequestRepository requestRepository;
 
     @Mock
     private CategoryRepository categoryRepository;
