@@ -257,6 +257,7 @@ public class EventsServiceImpl implements EventsService {
                 .getContent()
                 .stream()
                 .map(EventsMap::eventFullDtoFromEvent)
+                .peek(eventFullDto -> eventFullDto.setConfirmedRequests(requestRepository.countByEventIdAndStatus(eventFullDto.getId(),RequestStatus.CONFIRMED)))
                 .toList();
     }
 
