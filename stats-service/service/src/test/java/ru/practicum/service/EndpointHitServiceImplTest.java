@@ -7,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.practicum.dao.EndpointHitRepository;
 import ru.practicum.dto.HitDto;
-import jakarta.validation.ValidationException;
 import ru.practicum.dto.StatDto;
+import ru.practicum.exception.ValidationException;
 import ru.practicum.model.EndpointHit;
 
 import java.time.LocalDateTime;
