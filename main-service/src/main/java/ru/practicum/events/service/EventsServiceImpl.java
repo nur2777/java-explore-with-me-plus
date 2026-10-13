@@ -184,7 +184,6 @@ public class EventsServiceImpl implements EventsService {
                     confirmedRequests.add(request);
                     confirmedReqsCount++;
                 }
-//                requestRepository.saveAndFlush(request);
             }
             requestRepository.saveAll(requests);
             result.setConfirmedRequests(confirmedRequests.stream().map(RequestMap::requestToParticipationRequestDto).toList());
