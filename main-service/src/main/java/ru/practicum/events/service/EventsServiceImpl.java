@@ -15,6 +15,7 @@ import ru.practicum.common.EwmUtils;
 import ru.practicum.dto.HitDto;
 import ru.practicum.dto.StatDto;
 import ru.practicum.dto.StatsRequestDto;
+import ru.practicum.events.dao.EventConfirmedCount;
 import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.dto.*;
 import ru.practicum.events.mapping.EventsMap;
@@ -175,15 +176,17 @@ public class EventsServiceImpl implements EventsService {
                 }
                 // если текущий пользователь при подтверждении данной заявки, лимит заявок для события исчерпан, то все неподтверждённые заявки необходимо отклонить
                 if (eventRequestStatusUpdateRequest.getStatus().equals(RequestStatus.REJECTED) ||
-                        requestRepository.countByEventIdAndStatus(eventId, RequestStatus.CONFIRMED) >= event.getParticipantLimit()) {
+                        confirmedReqsCount >= event.getParticipantLimit()) {
                     request.setStatus(RequestStatus.REJECTED);
                     rejectedRequests.add(request);
                 } else {
                     request.setStatus(RequestStatus.CONFIRMED);
                     confirmedRequests.add(request);
+                    confirmedReqsCount++;
                 }
-                requestRepository.saveAndFlush(request);
+//                requestRepository.saveAndFlush(request);
             }
+            requestRepository.saveAll(requests);
             result.setConfirmedRequests(confirmedRequests.stream().map(RequestMap::requestToParticipationRequestDto).toList());
             result.setRejectedRequests(rejectedRequests.stream().map(RequestMap::requestToParticipationRequestDto).toList());
             return result;
@@ -251,11 +254,24 @@ public class EventsServiceImpl implements EventsService {
                 Sort.by(Sort.Direction.ASC, "id")
         );
 
-        return eventRepository.findAll(specification, pageable)
-                .getContent()
-                .stream()
+        List<Event> events = eventRepository.findAll(specification, pageable).getContent();
+
+        if (events.isEmpty()) {
+            return List.of();
+        }
+        List<Long> eventIds = events.stream()
+                                .map(Event::getId)
+                                .toList();
+        List<EventConfirmedCount> eventConfirmedCounts = requestRepository.countByEventIdsAndStatus(eventIds, RequestStatus.CONFIRMED);
+        Map<Long, Long> confirmedRequestsMap = eventConfirmedCounts.stream()
+                .collect(Collectors.toMap(EventConfirmedCount::getEventId,
+                                          EventConfirmedCount::getCount
+                                            ));
+
+        return events.stream()
                 .map(EventsMap::eventFullDtoFromEvent)
-                .peek(eventFullDto -> eventFullDto.setConfirmedRequests(requestRepository.countByEventIdAndStatus(eventFullDto.getId(),RequestStatus.CONFIRMED)))
+                .peek(eventFullDto -> eventFullDto.setConfirmedRequests(
+                        confirmedRequestsMap.getOrDefault(eventFullDto.getId(), 0L)))
                 .toList();
     }
 

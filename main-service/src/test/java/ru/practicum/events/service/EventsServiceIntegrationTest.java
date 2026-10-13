@@ -14,6 +14,7 @@ import ru.practicum.events.model.Event;
 import ru.practicum.events.model.State;
 import ru.practicum.events.model.Location;
 import ru.practicum.exception.ClientErrorException;
+import ru.practicum.requests.dao.RequestRepository;
 import ru.practicum.users.dao.UserRepository;
 import ru.practicum.users.model.User;
 
@@ -37,6 +38,9 @@ class EventsServiceIntegrationTest {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private RequestRepository requestRepository;
 
     @MockBean
     private StatsClient statsClient;

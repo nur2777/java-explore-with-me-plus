@@ -1,6 +1,8 @@
 package ru.practicum.requests.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import ru.practicum.events.dao.EventConfirmedCount;
 import ru.practicum.requests.model.Request;
 import ru.practicum.requests.model.RequestStatus;
 
@@ -48,6 +50,17 @@ public interface RequestRepository extends JpaRepository<Request,Long> {
      * @return количество заявок
      */
     Long countByEventIdAndStatus(Long eventId, RequestStatus status);
+
+    /** Возвращает количество заявок для каждого события из списка
+     * @param eventIds список идентификаторов событий
+     * @param status статус заявки
+     * @return список событий с количеством заявок
+     */
+    @Query("SELECT r.event.id AS eventId, COUNT(r) AS count " +
+             "FROM Request r " +
+            "WHERE r.event.id IN ?1 AND r.status = ?2 " +
+            "GROUP BY r.event.id")
+    List<EventConfirmedCount> countByEventIdsAndStatus(Collection<Long> eventIds, RequestStatus status);
 
     /** Поиск всех заявок по событию и статусу заявки
      * @param eventId - идентификатор события

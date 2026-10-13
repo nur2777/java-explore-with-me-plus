@@ -21,4 +21,6 @@ public interface EventRepository extends
      * @return список уникальных событий
      */
     Set<Event> findByIdIn(Set<Long> eventIds);
+
+
 }
