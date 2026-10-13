@@ -2,14 +2,12 @@ package ru.practicum.categories.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.service.CategoryService;
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/admin/categories")
 public class CategoryControllerImpl implements CategoryController {

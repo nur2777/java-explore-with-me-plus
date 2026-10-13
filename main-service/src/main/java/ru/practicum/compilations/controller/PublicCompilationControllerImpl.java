@@ -1,7 +1,6 @@
 package ru.practicum.compilations.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.compilations.dto.CompilationDto;
 import ru.practicum.compilations.service.CompilationService;
@@ -9,7 +8,6 @@ import ru.practicum.compilations.service.CompilationService;
 import java.util.List;
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/compilations")
 public class PublicCompilationControllerImpl implements PublicCompilationController {

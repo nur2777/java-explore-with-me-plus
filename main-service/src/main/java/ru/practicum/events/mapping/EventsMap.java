@@ -1,5 +1,6 @@
 package ru.practicum.events.mapping;
 
+import lombok.experimental.UtilityClass;
 import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.model.Category;
 import ru.practicum.events.dto.*;
@@ -7,6 +8,7 @@ import ru.practicum.events.model.Event;
 import ru.practicum.events.model.State;
 import ru.practicum.users.dto.UserShortDTO;
 
+@UtilityClass
 public class EventsMap {
 
     public static Event newEventDtoToEvent(NewEventDto newEventDto) {

@@ -1,7 +1,6 @@
 package ru.practicum.events.controller;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,6 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-@Slf4j
 @RequestMapping("/users/{userId}/events")
 public class PrivateEventsControllerImpl implements PrivateEventsController {
 
@@ -49,7 +47,6 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
 
     @PatchMapping("/{eventId}")
     @Override
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto userUpdateEvent(@PathVariable Long userId,
                                         @PathVariable Long eventId,
                                         @Valid @RequestBody UpdateEventUserRequest updateEventUserRequest) {
@@ -58,7 +55,6 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
 
     @GetMapping("/{eventId}/requests")
     @Override
-    @ResponseStatus(HttpStatus.OK)
     public Collection<ParticipationRequestDto> getEventRequests(@PathVariable Long userId,
                                                                 @PathVariable Long eventId) {
         return eventsService.getEventRequests(userId, eventId);
@@ -66,7 +62,6 @@ public class PrivateEventsControllerImpl implements PrivateEventsController {
 
 
     @PatchMapping("/{eventId}/requests")
-    @ResponseStatus(HttpStatus.OK)
     @Override
     public EventRequestStatusUpdateResult userConfirmRejectRequest(@PathVariable Long userId,
                                                                    @PathVariable Long eventId,
