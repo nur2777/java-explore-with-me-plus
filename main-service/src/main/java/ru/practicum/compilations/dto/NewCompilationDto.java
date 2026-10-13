@@ -1,7 +1,6 @@
 package ru.practicum.compilations.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +28,6 @@ public class NewCompilationDto {
     /**
      * Заголовок подборки
      */
-    @NotNull(message = "Заголовок подборки не может быть пустым")
     @NotBlank(message = "Заголовок подборки не может быть пустым")
     @Size(min = 1, message = "Заголовок подборки должен быть не менее 1 символа")
     @Size(max = 50, message = "Заголовок подборки должен быть не более 50 символов")

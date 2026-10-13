@@ -30,7 +30,6 @@ public class CategoryControllerImpl implements CategoryController {
 
     @PatchMapping("/{catId}")
     @Override
-    @ResponseStatus(HttpStatus.OK)
     public CategoryDto update(@PathVariable Long catId, @Valid @RequestBody CategoryDto updateCategory) {
         return categoryService.updateCategory(catId, updateCategory);
     }

@@ -32,7 +32,6 @@ public class RequestControllerImpl implements RequestController {
 
     @PatchMapping("/{requestId}/cancel")
     @Override
-    @ResponseStatus(HttpStatus.OK)
     public ParticipationRequestDto cancelRequest(@Valid @PathVariable Long userId,
                                                  @Valid @PathVariable Long requestId) {
         return requestService.cancelRequest(userId, requestId);
