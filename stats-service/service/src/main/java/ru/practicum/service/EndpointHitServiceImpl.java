@@ -3,9 +3,8 @@ package ru.practicum.service;
 import ru.practicum.dao.EndpointHitRepository;
 import ru.practicum.dto.HitDto;
 import ru.practicum.dto.StatDto;
-import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import ru.practicum.exception.ValidationException;
 import ru.practicum.mapping.EndpointHitMap;
 import ru.practicum.model.EndpointHit;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 @Transactional(readOnly = true)

@@ -3,7 +3,6 @@ package ru.practicum.controller;
 import ru.practicum.dto.HitDto;
 import ru.practicum.dto.StatDto;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,6 @@ import java.util.List;
 import static ru.practicum.constants.Constants.DATE_TIME_PATTERN;
 
 @RestController
-@Slf4j
 @RequestMapping()
 public class EndpointHitControllerImpl implements EndpointHitController {
 
