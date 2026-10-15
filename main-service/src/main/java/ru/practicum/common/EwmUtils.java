@@ -1,15 +1,14 @@
 package ru.practicum.common;
 
 
+import lombok.experimental.UtilityClass;
 import ru.practicum.exception.ValidationException;
 
 /**
  * Класс для вспомогательных методов
  */
+@UtilityClass
 public final class EwmUtils {
-    private EwmUtils() {
-
-    }
 
     /** Метод проверки идентификатора на null
      * @param id идентификатор
