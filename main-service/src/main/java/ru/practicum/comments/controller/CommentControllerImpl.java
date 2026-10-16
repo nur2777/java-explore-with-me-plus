@@ -29,4 +29,19 @@ public class CommentControllerImpl implements CommentController {
         return commentService.addNewComment(userId, eventId, newCommentDTO);
     }
 
+    @PatchMapping("/{commentId}")
+    @Override
+    public CommentDTO updateComment(@PathVariable Long userId,
+                                    @PathVariable Long commentId,
+                                    @Valid @RequestBody NewCommentDTO updateComment) {
+        return commentService.updateComment(userId, commentId, updateComment);
+    }
+
+    @DeleteMapping("/{commentId}")
+    @Override
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteComment(@PathVariable Long userId, @PathVariable Long commentId) {
+        commentService.deleteComment(userId, commentId);
+    }
+
 }

@@ -50,6 +50,47 @@ public class CommentServiceImpl implements CommentService {
         return CommentMap.commentToCommentDTO(comment);
     }
 
+    @Override
+    @Transactional
+    public CommentDTO updateComment(Long userId, Long commentId, NewCommentDTO updateComment) {
+        userCheck(userId);
+        Comment comment = commentCheck(commentId);
+        authorCheck(comment, userId);
+
+        comment.setText(updateComment.getText());
+        return CommentMap.commentToCommentDTO(commentRepository.save(comment));
+    }
+
+    @Override
+    @Transactional
+    public void deleteComment(Long userId, Long commentId) {
+        userCheck(userId);
+        Comment comment = commentCheck(commentId);
+        authorCheck(comment, userId);
+
+        commentRepository.delete(comment);
+    }
+
+    /** Метод проверяет идентификатор и существование комментария
+     * @param commentId - идентификатор комментария
+     * @return - объект комментария
+     */
+    private Comment commentCheck(Long commentId) {
+        EwmUtils.idIsNullCheck(commentId, "Идентификатор комментария commentId");
+        return commentRepository.findById(commentId)
+                .orElseThrow(() -> new NotFoundException("Комментарий с id " + commentId + " не найден "));
+    }
+
+    /** Метод проверяет, что пользователь является автором комментария
+     * @param comment - комментарий
+     * @param userId - идентификатор пользователя
+     */
+    private void authorCheck(Comment comment, Long userId) {
+        if (!comment.getUser().getId().equals(userId)) {
+            throw new ClientErrorException("Изменять и удалять комментарий может только его автор.");
+        }
+    }
+
     /** Метод проверяет идентификатор и существование пользователя
      * @param userId - идентификатор пользователя
      * @return объект пользователя
