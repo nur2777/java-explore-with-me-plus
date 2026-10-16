@@ -16,4 +16,19 @@ public interface CommentController {
      */
     CommentDTO addNewComment(Long userId, Long eventId, NewCommentDTO newComment);
 
+    /**
+     * Эндпоинт изменения комментария (может только автор)
+     * @param userId идентификатор автора
+     * @param commentId идентификатор комментария
+     * @param updateComment новый текст комментария
+     * @return объект изменённого комментария
+     */
+    CommentDTO updateComment(Long userId, Long commentId, NewCommentDTO updateComment);
+
+    /**
+     * Эндпоинт удаления комментария (может только автор)
+     * @param userId идентификатор автора
+     * @param commentId идентификатор комментария
+     */
+    void deleteComment(Long userId, Long commentId);
 }
