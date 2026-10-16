@@ -1,0 +1,595 @@
+{
+  "info": {
+    "_postman_id": "ffd699b6-b7d3-4c5e-8b05-34826b44c219",
+    "name": "Tests for Explore With Me - Comments feature",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55448863",
+    "_collection_link": "https://go.postman.co/collection/55448863-ffd699b6-b7d3-4c5e-8b05-34826b44c219?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Prepare",
+      "item": [
+        {
+          "name": "1.1. Добавление первого пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData).to.have.property(\"email\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n    pm.expect(jsonData.email).to.be.a(\"string\");\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Тестов Тест Тестович\",\r\n    \"email\" : \"testov5@test.test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.2. Добавление второго пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData).to.have.property(\"email\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n    pm.expect(jsonData.email).to.be.a(\"string\");\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Петров Петр Петрович\",\r\n    \"email\" : \"petrov@test.test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.3. Добавление третьего пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData).to.have.property(\"email\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n    pm.expect(jsonData.email).to.be.a(\"string\");\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Степанов Степан Степанович\",\r\n    \"email\" : \"stepan@test.test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Добавление новой категории",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Категория\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Горнолыжные туры на Шерегеш\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/admin/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3.1. Добавление нового события",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Событие\", function () {\n    let responseBody = pm.response.json();\n    pm.expect(responseBody).to.have.property('id'); // проверяем наличие поля id\n    pm.expect(responseBody.id).to.be.a('number'); // проверяем тип поля id\n    pm.expect(responseBody).to.have.property('annotation'); // проверяем наличие поля annotation\n    pm.expect(responseBody.annotation).to.be.a('string'); // проверяем тип поля annotation\n    pm.expect(responseBody).to.have.property('eventDate'); // проверяем наличие поля eventDate\n    pm.expect(responseBody.eventDate).to.be.a('string'); // проверяем тип поля eventDate\n    pm.expect(responseBody).to.have.property('description'); // проверяем наличие поля description\n    pm.expect(responseBody.description).to.be.a('string'); // проверяем тип поля description\n    pm.expect(responseBody).to.have.property('title'); // проверяем наличие поля title\n    pm.expect(responseBody.title).to.be.a('string'); // проверяем тип поля title\n    pm.expect(responseBody).to.have.property('createdOn'); // проверяем наличие поля createdOn\n    pm.expect(responseBody.createdOn).to.be.a('string'); // проверяем тип поля createdOn\n    pm.expect(responseBody).to.have.property('views'); // проверяем наличие поля views\n    pm.expect(responseBody.views).to.be.a('number'); // проверяем тип поля views\n    pm.expect(responseBody).to.have.property('participantLimit'); // проверяем наличие поля participantLimit\n    pm.expect(responseBody.participantLimit).to.be.a('number'); // проверяем тип поля participantLimit\n    pm.expect(responseBody).to.have.property('requestModeration'); // проверяем наличие поля requestModeration\n    pm.expect(responseBody.requestModeration).to.be.a('boolean'); // проверяем тип поля requestModeration\n    pm.expect(responseBody).to.have.property('paid'); // проверяем наличие поля paid\n    pm.expect(responseBody.paid).to.be.a('boolean'); // проверяем тип поля paid\n    pm.expect(responseBody).to.have.property('publishedOn'); // проверяем наличие поля publishedOn\n    if (responseBody.publishedOn !== null) {\n        pm.expect(responseBody.publishedOn).to.be.a('string'); // проверяем тип поля publishedOn\n    } else {\n        pm.expect(responseBody.publishedOn).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('category'); // проверяем наличие поля category\n    pm.expect(responseBody.category).to.be.an('object');\n    let category = responseBody.category; // получаем значение поля category\n    pm.expect(category).to.have.property('id');\n    pm.expect(category.id).to.be.a('number');\n    if (category.name !== null) {\n        pm.expect(category.name).to.be.a('string');\n    } else {\n        pm.expect(category.name).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('state');\n    pm.expect(responseBody.state).to.be.a('string');\n    let location = responseBody.location; // получаем значение поля location\n    pm.expect(location).to.have.property('lat');\n    pm.expect(location.lat).to.be.a('number');\n    pm.expect(location).to.have.property('lon');\n    pm.expect(location.lon).to.be.a('number');\n    let user = responseBody.initiator; // получаем значение поля user\n    pm.expect(user).to.have.property('id');\n    pm.expect(user.id).to.be.a('number');\n\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"1\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/1/events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "1",
+                "events"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3.2. Публикация созданного события",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {\n    pm.response.to.have.status(200); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Событие\", function () {\n    let responseBody = pm.response.json();\n    pm.expect(responseBody).to.have.property('id'); // проверяем наличие поля id\n    pm.expect(responseBody.id).to.be.a('number'); // проверяем тип поля id\n    pm.expect(responseBody).to.have.property('annotation'); // проверяем наличие поля annotation\n    pm.expect(responseBody.annotation).to.be.a('string'); // проверяем тип поля annotation\n    pm.expect(responseBody).to.have.property('eventDate'); // проверяем наличие поля eventDate\n    pm.expect(responseBody.eventDate).to.be.a('string'); // проверяем тип поля eventDate\n    pm.expect(responseBody).to.have.property('description'); // проверяем наличие поля description\n    pm.expect(responseBody.description).to.be.a('string'); // проверяем тип поля description\n    pm.expect(responseBody).to.have.property('title'); // проверяем наличие поля title\n    pm.expect(responseBody.title).to.be.a('string'); // проверяем тип поля title\n    pm.expect(responseBody).to.have.property('createdOn'); // проверяем наличие поля createdOn\n    pm.expect(responseBody.createdOn).to.be.a('string'); // проверяем тип поля createdOn\n    pm.expect(responseBody).to.have.property('views'); // проверяем наличие поля views\n    pm.expect(responseBody.views).to.be.a('number'); // проверяем тип поля views\n    pm.expect(responseBody).to.have.property('participantLimit'); // проверяем наличие поля participantLimit\n    pm.expect(responseBody.participantLimit).to.be.a('number'); // проверяем тип поля participantLimit\n    pm.expect(responseBody).to.have.property('requestModeration'); // проверяем наличие поля requestModeration\n    pm.expect(responseBody.requestModeration).to.be.a('boolean'); // проверяем тип поля requestModeration\n    pm.expect(responseBody).to.have.property('paid'); // проверяем наличие поля paid\n    pm.expect(responseBody.paid).to.be.a('boolean'); // проверяем тип поля paid\n    pm.expect(responseBody).to.have.property('publishedOn'); // проверяем наличие поля publishedOn\n    if (responseBody.publishedOn !== null) {\n        pm.expect(responseBody.publishedOn).to.be.a('string'); // проверяем тип поля publishedOn\n    } else {\n        pm.expect(responseBody.publishedOn).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('category'); // проверяем наличие поля category\n    pm.expect(responseBody.category).to.be.an('object');\n    let category = responseBody.category; // получаем значение поля category\n    pm.expect(category).to.have.property('id');\n    pm.expect(category.id).to.be.a('number');\n    if (category.name !== null) {\n        pm.expect(category.name).to.be.a('string');\n    } else {\n        pm.expect(category.name).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('state');\n    pm.expect(responseBody.state).to.be.a('string');\n    let location = responseBody.location; // получаем значение поля location\n    pm.expect(location).to.have.property('lat');\n    pm.expect(location.lat).to.be.a('number');\n    pm.expect(location).to.have.property('lon');\n    pm.expect(location.lon).to.be.a('number');\n    let user = responseBody.initiator; // получаем значение поля user\n    pm.expect(user).to.have.property('id');\n    pm.expect(user.id).to.be.a('number');\n\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"1\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"stateAction\" : \"PUBLISH_EVENT\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/admin/events/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "events",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Добавление новой заявки от пользователя на событие",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Категория\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"event\");\n    pm.expect(jsonData).to.have.property(\"requester\");\n    pm.expect(jsonData).to.have.property(\"status\");\n    pm.expect(jsonData).to.have.property(\"created\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.event).to.be.a(\"number\");\n    pm.expect(jsonData.requester).to.be.a(\"number\");\n    pm.expect(jsonData.status).to.be.a(\"string\");\n    pm.expect(jsonData.created).to.be.a(\"string\");\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/users/2/requests?eventId=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "requests"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Add Comments",
+      "item": [
+        {
+          "name": "5. Добавление комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\r\n    pm.response.to.have.status(201); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});\r\n\r\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {\r\n    let jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"id\");\r\n    pm.expect(jsonData).to.have.property(\"eventId\");\r\n    pm.expect(jsonData).to.have.property(\"userId\");\r\n    pm.expect(jsonData).to.have.property(\"text\");\r\n    pm.expect(jsonData).to.have.property(\"creationDate\");\r\n    pm.expect(jsonData.id).to.be.a(\"number\");\r\n    pm.expect(jsonData.text).to.be.a(\"string\");\r\n    pm.expect(jsonData.eventId).to.be.a(\"number\");\r\n    pm.expect(jsonData.userId).to.be.a(\"number\");\r\n    pm.expect(jsonData.creationDate).to.be.a(\"string\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Это самое крутое событие в году!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "6. Добавление комментария с пустым текстом",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "7. Добавление комментария с пробелами в тексте",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"    \"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "8. Добавление комментария с текстом более 1000 символов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. \"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "9. Добавление комментария от несуществующего пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Это самое крутое событие в году!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/999999/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "999999",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "10. Добавление комментария на несуществующее событие",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Это самое крутое событие в году!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/999999999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "999999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "11. Добавление комментария от пользователя без заявки",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Это самое крутое событие в году!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/3/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "3",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
