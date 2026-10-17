@@ -590,6 +590,475 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Update Comments",
+      "item": [
+        {
+          "name": "12. Изменение комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {\r\n    pm.response.to.have.status(200); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});\r\n\r\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {\r\n    let jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"id\");\r\n    pm.expect(jsonData).to.have.property(\"eventId\");\r\n    pm.expect(jsonData).to.have.property(\"userId\");\r\n    pm.expect(jsonData).to.have.property(\"text\");\r\n    pm.expect(jsonData).to.have.property(\"creationDate\");\r\n    pm.expect(jsonData.id).to.be.a(\"number\");\r\n    pm.expect(jsonData.text).to.be.a(\"string\");\r\n    pm.expect(jsonData.eventId).to.be.a(\"number\");\r\n    pm.expect(jsonData.userId).to.be.a(\"number\");\r\n    pm.expect(jsonData.creationDate).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r\n    let jsonData = pm.response.json();\r\n    let requestBody = JSON.parse(pm.request.body.raw);\r\n    pm.expect(jsonData.id).to.eql(1); // изменяли комментарий с id = 1\r\n    pm.expect(jsonData.userId).to.eql(2); // автор комментария не меняется\r\n    pm.expect(jsonData.eventId).to.eql(1); // событие комментария не меняется\r\n    pm.expect(jsonData.text).to.eql(requestBody.text); // текст обновился\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Обновлённый комментарий: событие оказалось ещё лучше!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "13. Изменение комментария с пустым текстом",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "14. Изменение комментария с пробелами в тексте",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"     \"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "15. Изменение комментария с текстом более 1000 символов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. Это комментарий для того что бы протестировать размерность текста в комментариии. \"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "16. Изменение комментария от несуществующего пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Обновлённый комментарий: событие оказалось ещё лучше!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/999999/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "999999",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "17. Изменение несуществующего комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Обновлённый комментарий: событие оказалось ещё лучше!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/999999999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "999999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "18. Изменение чужого комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {\r\n    pm.response.to.have.status(409); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"text\": \"Пытаюсь изменить чужой комментарий\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users/3/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "3",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete Comments",
+      "item": [
+        {
+          "name": "19. Удаление чужого комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {\r\n    pm.response.to.have.status(409); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/users/3/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "3",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "20. Удаление комментария от несуществующего пользователя",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/users/999999/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "999999",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "21. Удаление несуществующего комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/999999999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "999999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "22. Удаление комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 204 и без тела\", function () {\r\n    pm.response.to.have.status(204); // проверяем статус код\r\n    pm.expect(pm.response.text()).to.be.empty; // проверяем что тела ответа нет\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "23. Повторное удаление уже удалённого комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/users/2/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
