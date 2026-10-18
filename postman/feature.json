@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "ffd699b6-b7d3-4c5e-8b05-34826b44c219",
+    "_postman_id": "acd499e1-b0ca-4e89-8fb4-3165d2c360c6",
     "name": "Tests for Explore With Me - Comments feature",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "55448863",
-    "_collection_link": "https://go.postman.co/collection/55448863-ffd699b6-b7d3-4c5e-8b05-34826b44c219?source=collection_link"
+    "_exporter_id": "55860230",
+    "_collection_link": "https://go.postman.co/collection/55860230-acd499e1-b0ca-4e89-8fb4-3165d2c360c6?source=collection_link"
   },
   "item": [
     {
@@ -891,6 +891,172 @@
       ]
     },
     {
+      "name": "Get Comments - Before Delete Copy",
+      "item": [
+        {
+          "name": "24. Получение комментариев события",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус ответа 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Ответ в формате JSON\", function () {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"Ответ содержит список комментариев\", function () {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data.length).to.be.greaterThan(0);",
+                  "    const comment = data.find(c => c.id === 1);",
+                  "    pm.expect(comment).to.exist;",
+                  "    pm.expect(comment.eventId).to.eql(1);",
+                  "    pm.expect(comment.userId).to.eql(2);",
+                  "    pm.expect(comment.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");",
+                  "    pm.expect(comment.creationDate).to.be.a(\"string\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/1/comments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "1",
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "25. Получение комментария по ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус ответа 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Ответ в формате JSON\", function () {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"Поля комментария соответствуют ожидаемым\", function () {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data.id).to.eql(1);",
+                  "    pm.expect(data.eventId).to.eql(1);",
+                  "    pm.expect(data.userId).to.eql(2);",
+                  "    pm.expect(data.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");",
+                  "    pm.expect(data.creationDate).to.be.a(\"string\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "26. Получение комментариев несуществующего события",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус ответа 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/999999/comments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "999999",
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "27. Получение несуществующего комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус ответа 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/comments/999999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "comments",
+                "999999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Delete Comments",
       "item": [
         {
@@ -1051,6 +1217,87 @@
               "path": [
                 "users",
                 "2",
+                "comments",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get Comments - After Delete Copy",
+      "item": [
+        {
+          "name": "28. Получение комментариев события после удаления",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус ответа 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Ответ в формате JSON\", function () {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"Ответ содержит список комментариев\", function () {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data).to.be.empty;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/1/comments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "1",
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "29. Получение удалённого комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Статус ответа 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/comments/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
                 "comments",
                 "1"
               ]

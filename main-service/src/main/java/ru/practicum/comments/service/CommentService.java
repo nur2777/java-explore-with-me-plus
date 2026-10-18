@@ -3,6 +3,8 @@ package ru.practicum.comments.service;
 import ru.practicum.comments.dto.CommentDTO;
 import ru.practicum.comments.dto.NewCommentDTO;
 
+import java.util.List;
+
 /**
  * Интерфейс реализует логику CRUD-операций для сущности Комментарий
  */
@@ -32,4 +34,16 @@ public interface CommentService {
      * @param commentId идентификатор комментария
      */
     void deleteComment(Long userId, Long commentId);
+
+    /**
+     * Метод получения комментариев по событию.
+     * @param eventId идентификатор события
+     */
+    List<CommentDTO> getCommentsByEvent(Long eventId);
+
+    /**
+     * Метод получения комментария.
+     * @param commentId идентификатор комментария
+     */
+    CommentDTO getCommentById(Long commentId);
 }

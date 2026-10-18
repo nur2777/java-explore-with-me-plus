@@ -20,6 +20,8 @@ import ru.practicum.requests.model.RequestStatus;
 import ru.practicum.users.dao.UserRepository;
 import ru.practicum.users.model.User;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -107,5 +109,23 @@ public class CommentServiceImpl implements CommentService {
     private Event eventCheck(Long eventId) {
         EwmUtils.idIsNullCheck(eventId,"Идентификатор события eventId");
         return eventRepository.findById(eventId).orElseThrow(() -> new NotFoundException("Событие с id " + eventId + " не найдено "));
+    }
+
+    @Override
+    public List<CommentDTO> getCommentsByEvent(Long eventId) {
+        eventCheck(eventId);
+
+        return commentRepository
+                .findAllByEventIdOrderByCreationDateDesc(eventId)
+                .stream()
+                .map(CommentMap::commentToCommentDTO)
+                .toList();
+    }
+
+    @Override
+    public CommentDTO getCommentById(Long commentId) {
+        Comment comment = commentCheck(commentId);
+
+        return CommentMap.commentToCommentDTO(comment);
     }
 }
