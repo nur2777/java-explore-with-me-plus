@@ -555,7 +555,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {\r\n    pm.response.to.have.status(409); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
                 ]
               }
             }

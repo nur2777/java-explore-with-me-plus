@@ -12,6 +12,7 @@ import ru.practicum.comments.model.Comment;
 import ru.practicum.common.EwmUtils;
 import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.model.Event;
+import ru.practicum.events.model.State;
 import ru.practicum.exception.ClientErrorException;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.requests.dao.RequestRepository;
@@ -38,9 +39,11 @@ public class CommentServiceImpl implements CommentService {
     public CommentDTO addNewComment(Long userId, Long eventId, NewCommentDTO newCommentDTO) {
         User user = userCheck(userId);
         Event event = eventCheck(eventId);
-
+        if (!event.getState().equals(State.PUBLISHED)) {
+            throw new ClientErrorException("Комментарий можно добавлять только к опубликованным событиям.");
+        }
         Request request = requestRepository.findByRequesterIdAndEventId(userId,eventId)
-                .orElseThrow(() -> new NotFoundException("Заявка для пользователя с id " + userId + " на событие " + eventId + " не найдена "));
+                .orElseThrow(() -> new ClientErrorException("Заявка для пользователя с id " + userId + " на событие " + eventId + " не найдена "));
         if (!request.getStatus().equals(RequestStatus.CONFIRMED)) {
             throw new ClientErrorException("Комментарий можно добавлять только к событиям у которых одобрена заявка на участие.");
         }
@@ -113,8 +116,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentDTO> getCommentsByEvent(Long eventId) {
-        eventCheck(eventId);
-
+        Event event = eventCheck(eventId);
+        if (!event.getState().equals(State.PUBLISHED)) {
+            throw new ClientErrorException("Комментарии можно получать только у опубликованных событий.");
+        }
         return commentRepository
                 .findAllByEventIdOrderByCreationDateDesc(eventId)
                 .stream()
