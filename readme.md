@@ -17,18 +17,18 @@
    text 		    VARCHAR(1000),  
    creation_date TIMESTAMP  
    );  
-   COMMENT ON TABLE comments IS 'Таблица хранит комментарии';
-   COMMENT ON COLUMN comments.id IS 'Уникальный идентификатор комментария';
-   COMMENT ON COLUMN comments.event_id IS 'Идентификатор события';
-   COMMENT ON COLUMN comments.author_id IS 'Идентификатор автора';
-   COMMENT ON COLUMN comments.text IS 'Текст комментария';
-   COMMENT ON COLUMN comments.creation_date IS 'Дата и время создания комментария';
+   COMMENT ON TABLE comments IS 'Таблица хранит комментарии';  
+   COMMENT ON COLUMN comments.id IS 'Уникальный идентификатор комментария';  
+   COMMENT ON COLUMN comments.event_id IS 'Идентификатор события'; 
+   COMMENT ON COLUMN comments.author_id IS 'Идентификатор автора';  
+   COMMENT ON COLUMN comments.text IS 'Текст комментария';  
+   COMMENT ON COLUMN comments.creation_date IS 'Дата и время создания комментария';  
 
 ### Эндпоинты
-   тип, путь, параметры, проверки, DTO
-   POST ("/users/{userId}/comments") параметр строки event_id 
-    текст комментария в DTO
-   PUT
-   DELETE
-   GET ("/users/{userId}/comments") все комментарии пользователя
-   GET ("/users/{userId}/comments/event_id") все комментарии к событию
+   тип, путь, параметры, проверки, DTO  
+   POST ("/users/{userId}/comments") параметр строки event_id   
+    текст комментария в DTO  
+   PUT  
+   DELETE  
+   GET ("/users/{userId}/comments") все комментарии пользователя  
+   GET ("/users/{userId}/comments/event_id") все комментарии к событию  
