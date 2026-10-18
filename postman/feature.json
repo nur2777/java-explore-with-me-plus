@@ -188,7 +188,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"1\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
+              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"122\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -196,7 +196,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/135/events",
+              "raw": "http://localhost:8080/users/137/events",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -204,7 +204,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "135",
+                "137",
                 "events"
               ]
             }
@@ -229,7 +229,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"1\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"stateAction\" : \"PUBLISH_EVENT\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
+              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"122\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"stateAction\" : \"PUBLISH_EVENT\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -237,7 +237,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/admin/events/104",
+              "raw": "http://localhost:8080/admin/events/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -246,7 +246,7 @@
               "path": [
                 "admin",
                 "events",
-                "104"
+                "107"
               ]
             }
           },
@@ -269,7 +269,7 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/136/requests?eventId=104",
+              "raw": "http://localhost:8080/users/138/requests?eventId=107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -277,13 +277,13 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "requests"
               ],
               "query": [
                 {
                   "key": "eventId",
-                  "value": "104"
+                  "value": "107"
                 }
               ]
             }
@@ -321,7 +321,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/104",
+              "raw": "http://localhost:8080/users/138/comments/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -329,9 +329,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
-                "104"
+                "107"
               ]
             }
           },
@@ -363,7 +363,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/104",
+              "raw": "http://localhost:8080/users/138/comments/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -371,9 +371,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
-                "104"
+                "107"
               ]
             }
           },
@@ -405,7 +405,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/104",
+              "raw": "http://localhost:8080/users/138/comments/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -413,9 +413,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
-                "104"
+                "107"
               ]
             }
           },
@@ -447,7 +447,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/104",
+              "raw": "http://localhost:8080/users/138/comments/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -455,9 +455,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
-                "104"
+                "107"
               ]
             }
           },
@@ -489,7 +489,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/999999/comments/104",
+              "raw": "http://localhost:8080/users/999999/comments/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -499,7 +499,7 @@
                 "users",
                 "999999",
                 "comments",
-                "104"
+                "107"
               ]
             }
           },
@@ -531,7 +531,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/999999999",
+              "raw": "http://localhost:8080/users/138/comments/999999999",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -539,7 +539,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "999999999"
               ]
@@ -573,7 +573,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/137/comments/104",
+              "raw": "http://localhost:8080/users/139/comments/107",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -581,9 +581,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "137",
+                "139",
                 "comments",
-                "104"
+                "107"
               ]
             }
           },
@@ -602,7 +602,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {\r\n    pm.response.to.have.status(200); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});\r\n\r\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {\r\n    let jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"id\");\r\n    pm.expect(jsonData).to.have.property(\"eventId\");\r\n    pm.expect(jsonData).to.have.property(\"userId\");\r\n    pm.expect(jsonData).to.have.property(\"text\");\r\n    pm.expect(jsonData).to.have.property(\"creationDate\");\r\n    pm.expect(jsonData.id).to.be.a(\"number\");\r\n    pm.expect(jsonData.text).to.be.a(\"string\");\r\n    pm.expect(jsonData.eventId).to.be.a(\"number\");\r\n    pm.expect(jsonData.userId).to.be.a(\"number\");\r\n    pm.expect(jsonData.creationDate).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r\n    let jsonData = pm.response.json();\r\n    let requestBody = JSON.parse(pm.request.body.raw);\r\n    pm.expect(jsonData.id).to.eql(1); // изменяли комментарий с id = 1\r\n    pm.expect(jsonData.userId).to.eql(136); // автор комментария не меняется\r\n    pm.expect(jsonData.eventId).to.eql(104); // событие комментария не меняется\r\n    pm.expect(jsonData.text).to.eql(requestBody.text); // текст обновился\r\n});"
+                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {\r\n    pm.response.to.have.status(200); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});\r\n\r\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {\r\n    let jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"id\");\r\n    pm.expect(jsonData).to.have.property(\"eventId\");\r\n    pm.expect(jsonData).to.have.property(\"userId\");\r\n    pm.expect(jsonData).to.have.property(\"text\");\r\n    pm.expect(jsonData).to.have.property(\"creationDate\");\r\n    pm.expect(jsonData.id).to.be.a(\"number\");\r\n    pm.expect(jsonData.text).to.be.a(\"string\");\r\n    pm.expect(jsonData.eventId).to.be.a(\"number\");\r\n    pm.expect(jsonData.userId).to.be.a(\"number\");\r\n    pm.expect(jsonData.creationDate).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r\n    let jsonData = pm.response.json();\r\n    let requestBody = JSON.parse(pm.request.body.raw);\r\n    pm.expect(jsonData.id).to.eql(1); // изменяли комментарий с id = 1\r\n    pm.expect(jsonData.userId).to.eql(138); // автор комментария не меняется\r\n    pm.expect(jsonData.eventId).to.eql(107); // событие комментария не меняется\r\n    pm.expect(jsonData.text).to.eql(requestBody.text); // текст обновился\r\n});"
                 ]
               }
             }
@@ -620,7 +620,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/1",
+              "raw": "http://localhost:8080/users/138/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -628,7 +628,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "1"
               ]
@@ -662,7 +662,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/1",
+              "raw": "http://localhost:8080/users/138/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -670,7 +670,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "1"
               ]
@@ -704,7 +704,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/1",
+              "raw": "http://localhost:8080/users/138/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -712,7 +712,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "1"
               ]
@@ -746,7 +746,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/1",
+              "raw": "http://localhost:8080/users/138/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -754,7 +754,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "1"
               ]
@@ -830,7 +830,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/999999999",
+              "raw": "http://localhost:8080/users/138/comments/999999999",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -838,7 +838,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "999999999"
               ]
@@ -872,7 +872,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/137/comments/1",
+              "raw": "http://localhost:8080/users/139/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -880,7 +880,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "137",
+                "139",
                 "comments",
                 "1"
               ]
@@ -901,7 +901,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Ответ содержит список комментариев\", function () {\n    const data = pm.response.json();\n    pm.expect(data).to.be.an(\"array\");\n    pm.expect(data.length).to.be.greaterThan(0);\n    const comment = data.find(c => c.id === 1);\n    pm.expect(comment).to.exist;\n    pm.expect(comment.eventId).to.eql(104);\n    pm.expect(comment.userId).to.eql(136);\n    pm.expect(comment.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");\n    pm.expect(comment.creationDate).to.be.a(\"string\");\n});"
+                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Ответ содержит список комментариев\", function () {\n    const data = pm.response.json();\n    pm.expect(data).to.be.an(\"array\");\n    pm.expect(data.length).to.be.greaterThan(0);\n    const comment = data.find(c => c.id === 1);\n    pm.expect(comment).to.exist;\n    pm.expect(comment.eventId).to.eql(107);\n    pm.expect(comment.userId).to.eql(138);\n    pm.expect(comment.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");\n    pm.expect(comment.creationDate).to.be.a(\"string\");\n});"
                 ]
               }
             }
@@ -910,7 +910,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/events/104/comments",
+              "raw": "http://localhost:8080/events/107/comments",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -918,7 +918,7 @@
               "port": "8080",
               "path": [
                 "events",
-                "104",
+                "107",
                 "comments"
               ]
             }
@@ -933,7 +933,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Поля комментария соответствуют ожидаемым\", function () {\n    const data = pm.response.json();\n    pm.expect(data.id).to.eql(1);\n    pm.expect(data.eventId).to.eql(104);\n    pm.expect(data.userId).to.eql(136);\n    pm.expect(data.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");\n    pm.expect(data.creationDate).to.be.a(\"string\");\n});"
+                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Поля комментария соответствуют ожидаемым\", function () {\n    const data = pm.response.json();\n    pm.expect(data.id).to.eql(1);\n    pm.expect(data.eventId).to.eql(107);\n    pm.expect(data.userId).to.eql(138);\n    pm.expect(data.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");\n    pm.expect(data.creationDate).to.be.a(\"string\");\n});"
                 ]
               }
             }
@@ -1045,7 +1045,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/137/comments/1",
+              "raw": "http://localhost:8080/users/139/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1053,7 +1053,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "137",
+                "139",
                 "comments",
                 "1"
               ]
@@ -1111,7 +1111,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/2/comments/999999999",
+              "raw": "http://localhost:8080/users/136/comments/999999999",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1119,7 +1119,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "2",
+                "136",
                 "comments",
                 "999999999"
               ]
@@ -1144,7 +1144,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/1",
+              "raw": "http://localhost:8080/users/138/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1152,7 +1152,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "1"
               ]
@@ -1177,7 +1177,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/1",
+              "raw": "http://localhost:8080/users/138/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1185,7 +1185,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "138",
                 "comments",
                 "1"
               ]
@@ -1215,7 +1215,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/events/104/comments",
+              "raw": "http://localhost:8080/events/107/comments",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1223,7 +1223,7 @@
               "port": "8080",
               "path": [
                 "events",
-                "104",
+                "107",
                 "comments"
               ]
             }
