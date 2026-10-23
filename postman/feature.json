@@ -18,7 +18,25 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData).to.have.property(\"email\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n    pm.expect(jsonData.email).to.be.a(\"string\");\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"name\");",
+                  "    pm.expect(jsonData).to.have.property(\"email\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.name).to.be.a(\"string\");",
+                  "    pm.expect(jsonData.email).to.be.a(\"string\");",
+                  "});",
+                  "",
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set(\"organizerId\", pm.response.json().id);",
+                  "}"
                 ]
               }
             }
@@ -58,7 +76,25 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData).to.have.property(\"email\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n    pm.expect(jsonData.email).to.be.a(\"string\");\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"name\");",
+                  "    pm.expect(jsonData).to.have.property(\"email\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.name).to.be.a(\"string\");",
+                  "    pm.expect(jsonData.email).to.be.a(\"string\");",
+                  "});",
+                  "",
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set(\"participantId\", pm.response.json().id);",
+                  "}"
                 ]
               }
             }
@@ -98,7 +134,25 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData).to.have.property(\"email\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n    pm.expect(jsonData.email).to.be.a(\"string\");\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Пользователь\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"name\");",
+                  "    pm.expect(jsonData).to.have.property(\"email\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.name).to.be.a(\"string\");",
+                  "    pm.expect(jsonData.email).to.be.a(\"string\");",
+                  "});",
+                  "",
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set(\"otherUserId\", pm.response.json().id);",
+                  "}"
                 ]
               }
             }
@@ -138,7 +192,23 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Категория\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"name\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.name).to.be.a(\"string\");\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Категория\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"name\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.name).to.be.a(\"string\");",
+                  "});",
+                  "",
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set(\"categoryId\", pm.response.json().id);",
+                  "}"
                 ]
               }
             }
@@ -178,7 +248,66 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Событие\", function () {\n    let responseBody = pm.response.json();\n    pm.expect(responseBody).to.have.property('id'); // проверяем наличие поля id\n    pm.expect(responseBody.id).to.be.a('number'); // проверяем тип поля id\n    pm.expect(responseBody).to.have.property('annotation'); // проверяем наличие поля annotation\n    pm.expect(responseBody.annotation).to.be.a('string'); // проверяем тип поля annotation\n    pm.expect(responseBody).to.have.property('eventDate'); // проверяем наличие поля eventDate\n    pm.expect(responseBody.eventDate).to.be.a('string'); // проверяем тип поля eventDate\n    pm.expect(responseBody).to.have.property('description'); // проверяем наличие поля description\n    pm.expect(responseBody.description).to.be.a('string'); // проверяем тип поля description\n    pm.expect(responseBody).to.have.property('title'); // проверяем наличие поля title\n    pm.expect(responseBody.title).to.be.a('string'); // проверяем тип поля title\n    pm.expect(responseBody).to.have.property('createdOn'); // проверяем наличие поля createdOn\n    pm.expect(responseBody.createdOn).to.be.a('string'); // проверяем тип поля createdOn\n    pm.expect(responseBody).to.have.property('views'); // проверяем наличие поля views\n    pm.expect(responseBody.views).to.be.a('number'); // проверяем тип поля views\n    pm.expect(responseBody).to.have.property('participantLimit'); // проверяем наличие поля participantLimit\n    pm.expect(responseBody.participantLimit).to.be.a('number'); // проверяем тип поля participantLimit\n    pm.expect(responseBody).to.have.property('requestModeration'); // проверяем наличие поля requestModeration\n    pm.expect(responseBody.requestModeration).to.be.a('boolean'); // проверяем тип поля requestModeration\n    pm.expect(responseBody).to.have.property('paid'); // проверяем наличие поля paid\n    pm.expect(responseBody.paid).to.be.a('boolean'); // проверяем тип поля paid\n    pm.expect(responseBody).to.have.property('publishedOn'); // проверяем наличие поля publishedOn\n    if (responseBody.publishedOn !== null) {\n        pm.expect(responseBody.publishedOn).to.be.a('string'); // проверяем тип поля publishedOn\n    } else {\n        pm.expect(responseBody.publishedOn).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('category'); // проверяем наличие поля category\n    pm.expect(responseBody.category).to.be.an('object');\n    let category = responseBody.category; // получаем значение поля category\n    pm.expect(category).to.have.property('id');\n    pm.expect(category.id).to.be.a('number');\n    if (category.name !== null) {\n        pm.expect(category.name).to.be.a('string');\n    } else {\n        pm.expect(category.name).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('state');\n    pm.expect(responseBody.state).to.be.a('string');\n    let location = responseBody.location; // получаем значение поля location\n    pm.expect(location).to.have.property('lat');\n    pm.expect(location.lat).to.be.a('number');\n    pm.expect(location).to.have.property('lon');\n    pm.expect(location.lon).to.be.a('number');\n    let user = responseBody.initiator; // получаем значение поля user\n    pm.expect(user).to.have.property('id');\n    pm.expect(user.id).to.be.a('number');\n\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Событие\", function () {",
+                  "    let responseBody = pm.response.json();",
+                  "    pm.expect(responseBody).to.have.property('id'); // проверяем наличие поля id",
+                  "    pm.expect(responseBody.id).to.be.a('number'); // проверяем тип поля id",
+                  "    pm.expect(responseBody).to.have.property('annotation'); // проверяем наличие поля annotation",
+                  "    pm.expect(responseBody.annotation).to.be.a('string'); // проверяем тип поля annotation",
+                  "    pm.expect(responseBody).to.have.property('eventDate'); // проверяем наличие поля eventDate",
+                  "    pm.expect(responseBody.eventDate).to.be.a('string'); // проверяем тип поля eventDate",
+                  "    pm.expect(responseBody).to.have.property('description'); // проверяем наличие поля description",
+                  "    pm.expect(responseBody.description).to.be.a('string'); // проверяем тип поля description",
+                  "    pm.expect(responseBody).to.have.property('title'); // проверяем наличие поля title",
+                  "    pm.expect(responseBody.title).to.be.a('string'); // проверяем тип поля title",
+                  "    pm.expect(responseBody).to.have.property('createdOn'); // проверяем наличие поля createdOn",
+                  "    pm.expect(responseBody.createdOn).to.be.a('string'); // проверяем тип поля createdOn",
+                  "    pm.expect(responseBody).to.have.property('views'); // проверяем наличие поля views",
+                  "    pm.expect(responseBody.views).to.be.a('number'); // проверяем тип поля views",
+                  "    pm.expect(responseBody).to.have.property('participantLimit'); // проверяем наличие поля participantLimit",
+                  "    pm.expect(responseBody.participantLimit).to.be.a('number'); // проверяем тип поля participantLimit",
+                  "    pm.expect(responseBody).to.have.property('requestModeration'); // проверяем наличие поля requestModeration",
+                  "    pm.expect(responseBody.requestModeration).to.be.a('boolean'); // проверяем тип поля requestModeration",
+                  "    pm.expect(responseBody).to.have.property('paid'); // проверяем наличие поля paid",
+                  "    pm.expect(responseBody.paid).to.be.a('boolean'); // проверяем тип поля paid",
+                  "    pm.expect(responseBody).to.have.property('publishedOn'); // проверяем наличие поля publishedOn",
+                  "    if (responseBody.publishedOn !== null) {",
+                  "        pm.expect(responseBody.publishedOn).to.be.a('string'); // проверяем тип поля publishedOn",
+                  "    } else {",
+                  "        pm.expect(responseBody.publishedOn).to.be.null;",
+                  "    }",
+                  "    pm.expect(responseBody).to.have.property('category'); // проверяем наличие поля category",
+                  "    pm.expect(responseBody.category).to.be.an('object');",
+                  "    let category = responseBody.category; // получаем значение поля category",
+                  "    pm.expect(category).to.have.property('id');",
+                  "    pm.expect(category.id).to.be.a('number');",
+                  "    if (category.name !== null) {",
+                  "        pm.expect(category.name).to.be.a('string');",
+                  "    } else {",
+                  "        pm.expect(category.name).to.be.null;",
+                  "    }",
+                  "    pm.expect(responseBody).to.have.property('state');",
+                  "    pm.expect(responseBody.state).to.be.a('string');",
+                  "    let location = responseBody.location; // получаем значение поля location",
+                  "    pm.expect(location).to.have.property('lat');",
+                  "    pm.expect(location.lat).to.be.a('number');",
+                  "    pm.expect(location).to.have.property('lon');",
+                  "    pm.expect(location.lon).to.be.a('number');",
+                  "    let user = responseBody.initiator; // получаем значение поля user",
+                  "    pm.expect(user).to.have.property('id');",
+                  "    pm.expect(user.id).to.be.a('number');",
+                  "",
+                  "});",
+                  "",
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set(\"eventId\", pm.response.json().id);",
+                  "}"
                 ]
               }
             }
@@ -188,7 +317,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"122\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
+              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"{{categoryId}}\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -196,7 +325,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/137/events",
+              "raw": "http://localhost:8080/users/{{organizerId}}/events",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -204,7 +333,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "137",
+                "{{organizerId}}",
                 "events"
               ]
             }
@@ -219,7 +348,62 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {\n    pm.response.to.have.status(200); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Событие\", function () {\n    let responseBody = pm.response.json();\n    pm.expect(responseBody).to.have.property('id'); // проверяем наличие поля id\n    pm.expect(responseBody.id).to.be.a('number'); // проверяем тип поля id\n    pm.expect(responseBody).to.have.property('annotation'); // проверяем наличие поля annotation\n    pm.expect(responseBody.annotation).to.be.a('string'); // проверяем тип поля annotation\n    pm.expect(responseBody).to.have.property('eventDate'); // проверяем наличие поля eventDate\n    pm.expect(responseBody.eventDate).to.be.a('string'); // проверяем тип поля eventDate\n    pm.expect(responseBody).to.have.property('description'); // проверяем наличие поля description\n    pm.expect(responseBody.description).to.be.a('string'); // проверяем тип поля description\n    pm.expect(responseBody).to.have.property('title'); // проверяем наличие поля title\n    pm.expect(responseBody.title).to.be.a('string'); // проверяем тип поля title\n    pm.expect(responseBody).to.have.property('createdOn'); // проверяем наличие поля createdOn\n    pm.expect(responseBody.createdOn).to.be.a('string'); // проверяем тип поля createdOn\n    pm.expect(responseBody).to.have.property('views'); // проверяем наличие поля views\n    pm.expect(responseBody.views).to.be.a('number'); // проверяем тип поля views\n    pm.expect(responseBody).to.have.property('participantLimit'); // проверяем наличие поля participantLimit\n    pm.expect(responseBody.participantLimit).to.be.a('number'); // проверяем тип поля participantLimit\n    pm.expect(responseBody).to.have.property('requestModeration'); // проверяем наличие поля requestModeration\n    pm.expect(responseBody.requestModeration).to.be.a('boolean'); // проверяем тип поля requestModeration\n    pm.expect(responseBody).to.have.property('paid'); // проверяем наличие поля paid\n    pm.expect(responseBody.paid).to.be.a('boolean'); // проверяем тип поля paid\n    pm.expect(responseBody).to.have.property('publishedOn'); // проверяем наличие поля publishedOn\n    if (responseBody.publishedOn !== null) {\n        pm.expect(responseBody.publishedOn).to.be.a('string'); // проверяем тип поля publishedOn\n    } else {\n        pm.expect(responseBody.publishedOn).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('category'); // проверяем наличие поля category\n    pm.expect(responseBody.category).to.be.an('object');\n    let category = responseBody.category; // получаем значение поля category\n    pm.expect(category).to.have.property('id');\n    pm.expect(category.id).to.be.a('number');\n    if (category.name !== null) {\n        pm.expect(category.name).to.be.a('string');\n    } else {\n        pm.expect(category.name).to.be.null;\n    }\n    pm.expect(responseBody).to.have.property('state');\n    pm.expect(responseBody.state).to.be.a('string');\n    let location = responseBody.location; // получаем значение поля location\n    pm.expect(location).to.have.property('lat');\n    pm.expect(location.lat).to.be.a('number');\n    pm.expect(location).to.have.property('lon');\n    pm.expect(location.lon).to.be.a('number');\n    let user = responseBody.initiator; // получаем значение поля user\n    pm.expect(user).to.have.property('id');\n    pm.expect(user.id).to.be.a('number');\n\n});"
+                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(200); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Событие\", function () {",
+                  "    let responseBody = pm.response.json();",
+                  "    pm.expect(responseBody).to.have.property('id'); // проверяем наличие поля id",
+                  "    pm.expect(responseBody.id).to.be.a('number'); // проверяем тип поля id",
+                  "    pm.expect(responseBody).to.have.property('annotation'); // проверяем наличие поля annotation",
+                  "    pm.expect(responseBody.annotation).to.be.a('string'); // проверяем тип поля annotation",
+                  "    pm.expect(responseBody).to.have.property('eventDate'); // проверяем наличие поля eventDate",
+                  "    pm.expect(responseBody.eventDate).to.be.a('string'); // проверяем тип поля eventDate",
+                  "    pm.expect(responseBody).to.have.property('description'); // проверяем наличие поля description",
+                  "    pm.expect(responseBody.description).to.be.a('string'); // проверяем тип поля description",
+                  "    pm.expect(responseBody).to.have.property('title'); // проверяем наличие поля title",
+                  "    pm.expect(responseBody.title).to.be.a('string'); // проверяем тип поля title",
+                  "    pm.expect(responseBody).to.have.property('createdOn'); // проверяем наличие поля createdOn",
+                  "    pm.expect(responseBody.createdOn).to.be.a('string'); // проверяем тип поля createdOn",
+                  "    pm.expect(responseBody).to.have.property('views'); // проверяем наличие поля views",
+                  "    pm.expect(responseBody.views).to.be.a('number'); // проверяем тип поля views",
+                  "    pm.expect(responseBody).to.have.property('participantLimit'); // проверяем наличие поля participantLimit",
+                  "    pm.expect(responseBody.participantLimit).to.be.a('number'); // проверяем тип поля participantLimit",
+                  "    pm.expect(responseBody).to.have.property('requestModeration'); // проверяем наличие поля requestModeration",
+                  "    pm.expect(responseBody.requestModeration).to.be.a('boolean'); // проверяем тип поля requestModeration",
+                  "    pm.expect(responseBody).to.have.property('paid'); // проверяем наличие поля paid",
+                  "    pm.expect(responseBody.paid).to.be.a('boolean'); // проверяем тип поля paid",
+                  "    pm.expect(responseBody).to.have.property('publishedOn'); // проверяем наличие поля publishedOn",
+                  "    if (responseBody.publishedOn !== null) {",
+                  "        pm.expect(responseBody.publishedOn).to.be.a('string'); // проверяем тип поля publishedOn",
+                  "    } else {",
+                  "        pm.expect(responseBody.publishedOn).to.be.null;",
+                  "    }",
+                  "    pm.expect(responseBody).to.have.property('category'); // проверяем наличие поля category",
+                  "    pm.expect(responseBody.category).to.be.an('object');",
+                  "    let category = responseBody.category; // получаем значение поля category",
+                  "    pm.expect(category).to.have.property('id');",
+                  "    pm.expect(category.id).to.be.a('number');",
+                  "    if (category.name !== null) {",
+                  "        pm.expect(category.name).to.be.a('string');",
+                  "    } else {",
+                  "        pm.expect(category.name).to.be.null;",
+                  "    }",
+                  "    pm.expect(responseBody).to.have.property('state');",
+                  "    pm.expect(responseBody.state).to.be.a('string');",
+                  "    let location = responseBody.location; // получаем значение поля location",
+                  "    pm.expect(location).to.have.property('lat');",
+                  "    pm.expect(location.lat).to.be.a('number');",
+                  "    pm.expect(location).to.have.property('lon');",
+                  "    pm.expect(location.lon).to.be.a('number');",
+                  "    let user = responseBody.initiator; // получаем значение поля user",
+                  "    pm.expect(user).to.have.property('id');",
+                  "    pm.expect(user.id).to.be.a('number');",
+                  "",
+                  "});"
                 ]
               }
             }
@@ -229,7 +413,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"122\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"stateAction\" : \"PUBLISH_EVENT\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
+              "raw": "{\r\n    \"annotation\" : \"Открытие горнолыжного сезона\",\r\n    \"category\" : \"{{categoryId}}\",\r\n    \"description\" : \"Раскатываем свежий пухляк на склонах горной Шории и тусим в барах\",\r\n    \"eventDate\" : \"2026-12-02 10:00:00\",\r\n    \"location\" : {\"lat\" : \"52.940511\",\r\n                  \"lon\" : \"87.917713\"\r\n                 },\r\n    \"paid\" : \"true\",\r\n    \"requestModeration\" : \"false\",\r\n    \"stateAction\" : \"PUBLISH_EVENT\",\r\n    \"title\" : \"Лучше гор могут быть только горы\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -237,7 +421,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/admin/events/107",
+              "raw": "http://localhost:8080/admin/events/{{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -246,7 +430,7 @@
               "path": [
                 "admin",
                 "events",
-                "107"
+                "{{eventId}}"
               ]
             }
           },
@@ -260,7 +444,25 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\n    pm.response.to.have.status(201); // проверяем статус код\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\n    pm.response.to.be.json; // проверяем что ответ в формате json\n});\n\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Категория\", function () {\n    let jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"id\");\n    pm.expect(jsonData).to.have.property(\"event\");\n    pm.expect(jsonData).to.have.property(\"requester\");\n    pm.expect(jsonData).to.have.property(\"status\");\n    pm.expect(jsonData).to.have.property(\"created\");\n    pm.expect(jsonData.id).to.be.a(\"number\");\n    pm.expect(jsonData.event).to.be.a(\"number\");\n    pm.expect(jsonData.requester).to.be.a(\"number\");\n    pm.expect(jsonData.status).to.be.a(\"string\");\n    pm.expect(jsonData.created).to.be.a(\"string\");\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Категория\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"event\");",
+                  "    pm.expect(jsonData).to.have.property(\"requester\");",
+                  "    pm.expect(jsonData).to.have.property(\"status\");",
+                  "    pm.expect(jsonData).to.have.property(\"created\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.event).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.requester).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.status).to.be.a(\"string\");",
+                  "    pm.expect(jsonData.created).to.be.a(\"string\");",
+                  "});"
                 ]
               }
             }
@@ -269,7 +471,7 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/138/requests?eventId=107",
+              "raw": "http://localhost:8080/users/{{participantId}}/requests?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -277,13 +479,13 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "requests"
               ],
               "query": [
                 {
                   "key": "eventId",
-                  "value": "107"
+                  "value": "{{eventId}}"
                 }
               ]
             }
@@ -303,7 +505,29 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {\r\n    pm.response.to.have.status(201); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});\r\n\r\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {\r\n    let jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"id\");\r\n    pm.expect(jsonData).to.have.property(\"eventId\");\r\n    pm.expect(jsonData).to.have.property(\"userId\");\r\n    pm.expect(jsonData).to.have.property(\"text\");\r\n    pm.expect(jsonData).to.have.property(\"creationDate\");\r\n    pm.expect(jsonData.id).to.be.a(\"number\");\r\n    pm.expect(jsonData.text).to.be.a(\"string\");\r\n    pm.expect(jsonData.eventId).to.be.a(\"number\");\r\n    pm.expect(jsonData.userId).to.be.a(\"number\");\r\n    pm.expect(jsonData.creationDate).to.be.a(\"string\");\r\n});"
+                  "pm.test(\"Ответ должен быть 201 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(201); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"eventId\");",
+                  "    pm.expect(jsonData).to.have.property(\"userId\");",
+                  "    pm.expect(jsonData).to.have.property(\"text\");",
+                  "    pm.expect(jsonData).to.have.property(\"creationDate\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.text).to.be.a(\"string\");",
+                  "    pm.expect(jsonData.eventId).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.userId).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.creationDate).to.be.a(\"string\");",
+                  "});",
+                  "",
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set(\"commentId\", pm.response.json().id);",
+                  "}"
                 ]
               }
             }
@@ -321,7 +545,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/107",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -329,9 +553,14 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
-                "comments",
-                "107"
+                "{{participantId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
               ]
             }
           },
@@ -345,7 +574,9 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
                 ]
               }
             }
@@ -363,7 +594,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/107",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -371,9 +602,14 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
-                "comments",
-                "107"
+                "{{participantId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
               ]
             }
           },
@@ -387,7 +623,9 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
                 ]
               }
             }
@@ -405,7 +643,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/107",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -413,9 +651,14 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
-                "comments",
-                "107"
+                "{{participantId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
               ]
             }
           },
@@ -429,7 +672,9 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
                 ]
               }
             }
@@ -447,7 +692,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/107",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -455,9 +700,14 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
-                "comments",
-                "107"
+                "{{participantId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
               ]
             }
           },
@@ -471,7 +721,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -489,7 +743,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/999999/comments/107",
+              "raw": "http://localhost:8080/users/999999/comments?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -498,8 +752,13 @@
               "path": [
                 "users",
                 "999999",
-                "comments",
-                "107"
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
               ]
             }
           },
@@ -513,7 +772,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -531,7 +794,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/999999999",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments?eventId=999999999",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -539,9 +802,14 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
-                "comments",
-                "999999999"
+                "{{participantId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "999999999"
+                }
               ]
             }
           },
@@ -555,7 +823,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {\r\n    pm.response.to.have.status(409); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(409); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -573,7 +845,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/139/comments/107",
+              "raw": "http://localhost:8080/users/{{otherUserId}}/comments?eventId={{eventId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -581,9 +853,14 @@
               "port": "8080",
               "path": [
                 "users",
-                "139",
-                "comments",
-                "107"
+                "{{otherUserId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
               ]
             }
           },
@@ -602,7 +879,34 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {\r\n    pm.response.to.have.status(200); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});\r\n\r\npm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {\r\n    let jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"id\");\r\n    pm.expect(jsonData).to.have.property(\"eventId\");\r\n    pm.expect(jsonData).to.have.property(\"userId\");\r\n    pm.expect(jsonData).to.have.property(\"text\");\r\n    pm.expect(jsonData).to.have.property(\"creationDate\");\r\n    pm.expect(jsonData.id).to.be.a(\"number\");\r\n    pm.expect(jsonData.text).to.be.a(\"string\");\r\n    pm.expect(jsonData.eventId).to.be.a(\"number\");\r\n    pm.expect(jsonData.userId).to.be.a(\"number\");\r\n    pm.expect(jsonData.creationDate).to.be.a(\"string\");\r\n});\r\n\r\npm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r\n    let jsonData = pm.response.json();\r\n    let requestBody = JSON.parse(pm.request.body.raw);\r\n    pm.expect(jsonData.id).to.eql(1); // изменяли комментарий с id = 1\r\n    pm.expect(jsonData.userId).to.eql(138); // автор комментария не меняется\r\n    pm.expect(jsonData.eventId).to.eql(107); // событие комментария не меняется\r\n    pm.expect(jsonData.text).to.eql(requestBody.text); // текст обновился\r\n});"
+                  "pm.test(\"Ответ должен быть 200 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(200); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});",
+                  "",
+                  "pm.test(\"Ответ содержит корректные поля и типы полей для сущности Комментарий\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(jsonData).to.have.property(\"eventId\");",
+                  "    pm.expect(jsonData).to.have.property(\"userId\");",
+                  "    pm.expect(jsonData).to.have.property(\"text\");",
+                  "    pm.expect(jsonData).to.have.property(\"creationDate\");",
+                  "    pm.expect(jsonData.id).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.text).to.be.a(\"string\");",
+                  "    pm.expect(jsonData.eventId).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.userId).to.be.a(\"number\");",
+                  "    pm.expect(jsonData.creationDate).to.be.a(\"string\");",
+                  "});",
+                  "",
+                  "pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {",
+                  "    let jsonData = pm.response.json();",
+                  "    let requestBody = JSON.parse(pm.request.body.raw);",
+                  "    pm.expect(jsonData.id).to.eql(Number(pm.collectionVariables.get(\"commentId\"))); // изменяли комментарий с id = 1",
+                  "    pm.expect(jsonData.userId).to.eql(Number(pm.collectionVariables.get(\"participantId\"))); // автор комментария не меняется",
+                  "    pm.expect(jsonData.eventId).to.eql(Number(pm.collectionVariables.get(\"eventId\"))); // событие комментария не меняется",
+                  "    pm.expect(jsonData.text).to.eql(requestBody.text); // текст обновился",
+                  "});"
                 ]
               }
             }
@@ -620,7 +924,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/1",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -628,9 +932,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -644,7 +948,9 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
                 ]
               }
             }
@@ -662,7 +968,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/1",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -670,9 +976,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -686,7 +992,9 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
                 ]
               }
             }
@@ -704,7 +1012,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/1",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -712,9 +1020,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -728,7 +1036,9 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                  "pm.test(\"Ответ должен содержать код статуса 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
                 ]
               }
             }
@@ -746,7 +1056,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/1",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -754,9 +1064,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -770,7 +1080,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -788,7 +1102,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/999999/comments/1",
+              "raw": "http://localhost:8080/users/999999/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -798,7 +1112,7 @@
                 "users",
                 "999999",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -812,7 +1126,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -830,7 +1148,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/999999999",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/999999999",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -838,7 +1156,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
                 "999999999"
               ]
@@ -854,7 +1172,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {\r\n    pm.response.to.have.status(409); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(409); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -872,7 +1194,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/users/139/comments/1",
+              "raw": "http://localhost:8080/users/{{otherUserId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -880,9 +1202,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "139",
+                "{{otherUserId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -901,7 +1223,24 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Ответ содержит список комментариев\", function () {\n    const data = pm.response.json();\n    pm.expect(data).to.be.an(\"array\");\n    pm.expect(data.length).to.be.greaterThan(0);\n    const comment = data.find(c => c.id === 1);\n    pm.expect(comment).to.exist;\n    pm.expect(comment.eventId).to.eql(107);\n    pm.expect(comment.userId).to.eql(138);\n    pm.expect(comment.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");\n    pm.expect(comment.creationDate).to.be.a(\"string\");\n});"
+                  "pm.test(\"Статус ответа 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Ответ в формате JSON\", function () {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"Ответ содержит список комментариев\", function () {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data.length).to.be.greaterThan(0);",
+                  "    const comment = data.find(c => c.id === Number(pm.collectionVariables.get(\"commentId\")));",
+                  "    pm.expect(comment).to.exist;",
+                  "    pm.expect(comment.eventId).to.eql(Number(pm.collectionVariables.get(\"eventId\")));",
+                  "    pm.expect(comment.userId).to.eql(Number(pm.collectionVariables.get(\"participantId\")));",
+                  "    pm.expect(comment.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");",
+                  "    pm.expect(comment.creationDate).to.be.a(\"string\");",
+                  "});"
                 ]
               }
             }
@@ -910,7 +1249,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/events/107/comments",
+              "raw": "http://localhost:8080/events/{{eventId}}/comments",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -918,7 +1257,7 @@
               "port": "8080",
               "path": [
                 "events",
-                "107",
+                "{{eventId}}",
                 "comments"
               ]
             }
@@ -933,7 +1272,21 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Поля комментария соответствуют ожидаемым\", function () {\n    const data = pm.response.json();\n    pm.expect(data.id).to.eql(1);\n    pm.expect(data.eventId).to.eql(107);\n    pm.expect(data.userId).to.eql(138);\n    pm.expect(data.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");\n    pm.expect(data.creationDate).to.be.a(\"string\");\n});"
+                  "pm.test(\"Статус ответа 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Ответ в формате JSON\", function () {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"Поля комментария соответствуют ожидаемым\", function () {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data.id).to.eql(Number(pm.collectionVariables.get(\"commentId\")));",
+                  "    pm.expect(data.eventId).to.eql(Number(pm.collectionVariables.get(\"eventId\")));",
+                  "    pm.expect(data.userId).to.eql(Number(pm.collectionVariables.get(\"participantId\")));",
+                  "    pm.expect(data.text).to.eql(\"Обновлённый комментарий: событие оказалось ещё лучше!\");",
+                  "    pm.expect(data.creationDate).to.be.a(\"string\");",
+                  "});"
                 ]
               }
             }
@@ -942,7 +1295,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/comments/1",
+              "raw": "http://localhost:8080/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -950,7 +1303,7 @@
               "port": "8080",
               "path": [
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -1026,6 +1379,194 @@
       ]
     },
     {
+      "name": "Pagination - Public Comments",
+      "item": [
+        {
+          "name": "30. Публичный список: from=0&size=1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Пагинация: первая страница события\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data.length).to.eql(1);",
+                  "    pm.expect(data[0].eventId).to.eql(Number(pm.collectionVariables.get(\"eventId\")));",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/{{eventId}}/comments?from=0&size=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "{{eventId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "31. Публичный список: from=1&size=1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Пагинация: смещение и размер\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data.length).to.be.at.most(1);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/{{eventId}}/comments?from=1&size=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "{{eventId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "32. Публичный список: отрицательный from",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Некорректное смещение: HTTP 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/{{eventId}}/comments?from=-1&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "{{eventId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "-1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "33. Публичный список: size=0",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Некорректный размер страницы: HTTP 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/events/{{eventId}}/comments?from=0&size=0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "events",
+                "{{eventId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Delete Comments",
       "item": [
         {
@@ -1036,7 +1577,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {\r\n    pm.response.to.have.status(409); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 409 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(409); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -1045,7 +1590,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/139/comments/1",
+              "raw": "http://localhost:8080/users/{{otherUserId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1053,9 +1598,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "139",
+                "{{otherUserId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -1069,7 +1614,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -1078,7 +1627,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/999999/comments/1",
+              "raw": "http://localhost:8080/users/999999/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1088,7 +1637,7 @@
                 "users",
                 "999999",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -1102,7 +1651,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -1111,7 +1664,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/136/comments/999999999",
+              "raw": "http://localhost:8080/users/{{organizerId}}/comments/999999999",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1119,7 +1672,7 @@
               "port": "8080",
               "path": [
                 "users",
-                "136",
+                "{{organizerId}}",
                 "comments",
                 "999999999"
               ]
@@ -1135,7 +1688,10 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 204 и без тела\", function () {\r\n    pm.response.to.have.status(204); // проверяем статус код\r\n    pm.expect(pm.response.text()).to.be.empty; // проверяем что тела ответа нет\r\n});"
+                  "pm.test(\"Ответ должен быть 204 и без тела\", function () {",
+                  "    pm.response.to.have.status(204); // проверяем статус код",
+                  "    pm.expect(pm.response.text()).to.be.empty; // проверяем что тела ответа нет",
+                  "});"
                 ]
               }
             }
@@ -1144,7 +1700,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/1",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1152,9 +1708,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -1168,7 +1724,11 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {\r\n    pm.response.to.have.status(404); // проверяем статус код\r\n    pm.response.to.be.withBody; // проверяем что есть тело ответа\r\n    pm.response.to.be.json; // проверяем что ответ в формате json\r\n});"
+                  "pm.test(\"Ответ должен быть 404 и в формате JSON\", function () {",
+                  "    pm.response.to.have.status(404); // проверяем статус код",
+                  "    pm.response.to.be.withBody; // проверяем что есть тело ответа",
+                  "    pm.response.to.be.json; // проверяем что ответ в формате json",
+                  "});"
                 ]
               }
             }
@@ -1177,7 +1737,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/users/138/comments/1",
+              "raw": "http://localhost:8080/users/{{participantId}}/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1185,9 +1745,9 @@
               "port": "8080",
               "path": [
                 "users",
-                "138",
+                "{{participantId}}",
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
@@ -1206,7 +1766,18 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Статус ответа 200\", function () {\n    pm.response.to.have.status(200);\n});\npm.test(\"Ответ в формате JSON\", function () {\n    pm.response.to.be.withBody;\n    pm.response.to.be.json;\n});\npm.test(\"Ответ содержит список комментариев\", function () {\n    const data = pm.response.json();\n    pm.expect(data).to.be.an(\"array\");\n    pm.expect(data).to.be.empty;\n});"
+                  "pm.test(\"Статус ответа 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Ответ в формате JSON\", function () {",
+                  "    pm.response.to.be.withBody;",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "pm.test(\"Ответ содержит список комментариев\", function () {",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data).to.be.empty;",
+                  "});"
                 ]
               }
             }
@@ -1215,7 +1786,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/events/107/comments",
+              "raw": "http://localhost:8080/events/{{eventId}}/comments",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1223,7 +1794,7 @@
               "port": "8080",
               "path": [
                 "events",
-                "107",
+                "{{eventId}}",
                 "comments"
               ]
             }
@@ -1249,7 +1820,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/comments/1",
+              "raw": "http://localhost:8080/comments/{{commentId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1257,13 +1828,421 @@
               "port": "8080",
               "path": [
                 "comments",
-                "1"
+                "{{commentId}}"
               ]
             }
           },
           "response": []
         }
       ]
+    },
+    {
+      "name": "Admin Comments - Moderation",
+      "item": [
+        {
+          "name": "34. Создание комментария для модерации",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Создан комментарий для проверки модерации\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data.id).to.be.a(\"number\");",
+                  "    pm.expect(data.userId).to.eql(Number(pm.collectionVariables.get(\"participantId\")));",
+                  "    pm.expect(data.eventId).to.eql(Number(pm.collectionVariables.get(\"eventId\")));",
+                  "    pm.expect(data.text).to.eql(\"Проверка административной модерации\");",
+                  "    pm.collectionVariables.set(\"adminCommentId\", data.id);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/users/{{participantId}}/comments?eventId={{eventId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users",
+                "{{participantId}}",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Проверка административной модерации\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "35. Администратор: список без фильтров",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Административный список содержит комментарий\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data.length).to.be.at.most(10);",
+                  "    const id = Number(pm.collectionVariables.get(\"adminCommentId\"));",
+                  "    pm.expect(data.some(c => c.id === id)).to.be.true;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/admin/comments?from=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "36. Администратор: фильтры eventId, userId и text",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Комбинированные фильтры находят нужный комментарий\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    const id = Number(pm.collectionVariables.get(\"adminCommentId\"));",
+                  "    pm.expect(data.some(c => c.id === id)).to.be.true;",
+                  "    data.forEach(c => {",
+                  "        pm.expect(c.eventId).to.eql(Number(pm.collectionVariables.get(\"eventId\")));",
+                  "        pm.expect(c.userId).to.eql(Number(pm.collectionVariables.get(\"participantId\")));",
+                  "        pm.expect(c.text.toLowerCase()).to.include(\"модерации\");",
+                  "    });",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/admin/comments?eventId={{eventId}}&userId={{participantId}}&text=модерации&from=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                },
+                {
+                  "key": "userId",
+                  "value": "{{participantId}}"
+                },
+                {
+                  "key": "text",
+                  "value": "модерации"
+                },
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "37. Администратор: фильтр без совпадений",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Фильтр без совпадений возвращает пустой список\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\").that.is.empty;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/admin/comments?text=несуществующий_текст_для_поиска_987654321&from=0&size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "text",
+                  "value": "несуществующий_текст_для_поиска_987654321"
+                },
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "38. Администратор: пагинация from=1&size=1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Административная пагинация: размер страницы\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const data = pm.response.json();",
+                  "    pm.expect(data).to.be.an(\"array\");",
+                  "    pm.expect(data.length).to.be.at.most(1);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/admin/comments?eventId={{eventId}}&from=1&size=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "eventId",
+                  "value": "{{eventId}}"
+                },
+                {
+                  "key": "from",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "39. Администратор: удаление несуществующего комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Несуществующий комментарий: HTTP 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/admin/comments/999999999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "comments",
+                "999999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "40. Администратор: удаление комментария",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Администратор удалил комментарий\", function () {",
+                  "    pm.response.to.have.status(204);",
+                  "    pm.expect(pm.response.text()).to.be.empty;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/admin/comments/{{adminCommentId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "admin",
+                "comments",
+                "{{adminCommentId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "41. Проверка удаления администратором",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Удалённый администратором комментарий недоступен\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "    pm.collectionVariables.unset(\"adminCommentId\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/comments/{{adminCommentId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "comments",
+                "{{adminCommentId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "organizerId",
+      "value": ""
+    },
+    {
+      "key": "participantId",
+      "value": ""
+    },
+    {
+      "key": "otherUserId",
+      "value": ""
+    },
+    {
+      "key": "categoryId",
+      "value": ""
+    },
+    {
+      "key": "eventId",
+      "value": ""
+    },
+    {
+      "key": "commentId",
+      "value": ""
+    },
+    {
+      "key": "adminCommentId",
+      "value": ""
     }
   ]
 }
