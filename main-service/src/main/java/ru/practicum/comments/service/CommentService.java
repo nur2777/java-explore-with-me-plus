@@ -1,10 +1,7 @@
 package ru.practicum.comments.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import ru.practicum.comments.dto.CommentDTO;
 import ru.practicum.comments.dto.NewCommentDTO;
-import ru.practicum.comments.model.Comment;
 
 import java.util.List;
 
