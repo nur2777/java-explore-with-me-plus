@@ -1,7 +1,10 @@
 package ru.practicum.comments.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ru.practicum.comments.dto.CommentDTO;
 import ru.practicum.comments.dto.NewCommentDTO;
+import ru.practicum.comments.model.Comment;
 
 import java.util.List;
 
@@ -35,11 +38,16 @@ public interface CommentService {
      */
     void deleteComment(Long userId, Long commentId);
 
-    /**
-     * Метод получения комментариев по событию.
-     * @param eventId идентификатор события
-     */
-    List<CommentDTO> getCommentsByEvent(Long eventId);
+    List<CommentDTO> getCommentsByEvent(Long eventId, int from, int size);
+
+    void deleteCommentByAdmin(Long commentId);
+
+    List<CommentDTO> getCommentsForAdmin(
+            Long eventId,
+            Long userId,
+            String text,
+            int from,
+            int size);
 
     /**
      * Метод получения комментария.

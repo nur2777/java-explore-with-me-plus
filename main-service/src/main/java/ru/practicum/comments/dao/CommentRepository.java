@@ -1,11 +1,13 @@
 package ru.practicum.comments.dao;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import ru.practicum.comments.model.Comment;
 
-import java.util.List;
+public interface CommentRepository extends JpaRepository<Comment, Long>,
+        JpaSpecificationExecutor<Comment> {
 
-
-public interface CommentRepository extends JpaRepository<Comment,Long> {
-    List<Comment> findAllByEventIdOrderByCreationDateDesc(Long eventId);
+    Page<Comment> findAllByEventId(Long eventId, Pageable pageable);
 }

@@ -129,7 +129,7 @@ class CommentServiceImplTest {
         when(commentRepository.findById(999L)).thenReturn(Optional.empty());
 
         assertThrows(NotFoundException.class, () -> commentService.deleteComment(1L, 999L));
-        verify(commentRepository, never()).delete(any());
+        verify(commentRepository, never()).delete(any(Comment.class));
     }
 
     @Test
@@ -138,6 +138,6 @@ class CommentServiceImplTest {
         when(commentRepository.findById(100L)).thenReturn(Optional.of(comment));
 
         assertThrows(ClientErrorException.class, () -> commentService.deleteComment(2L, 100L));
-        verify(commentRepository, never()).delete(any());
+        verify(commentRepository, never()).delete(any(Comment.class));
     }
 }

@@ -20,11 +20,11 @@ public class CommentControllerImpl implements CommentController {
         this.commentService = commentService;
     }
 
-    @PostMapping("/{eventId}")
+    @PostMapping
     @Override
     @ResponseStatus(HttpStatus.CREATED)
     public CommentDTO addNewComment(@PathVariable Long userId,
-                                    @PathVariable Long eventId,
+                                    @RequestParam Long eventId,
                                     @Valid @RequestBody NewCommentDTO newCommentDTO) {
         return commentService.addNewComment(userId, eventId, newCommentDTO);
     }

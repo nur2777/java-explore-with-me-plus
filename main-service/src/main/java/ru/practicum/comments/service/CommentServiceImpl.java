@@ -2,6 +2,10 @@ package ru.practicum.comments.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.comments.dao.CommentRepository;
@@ -13,8 +17,10 @@ import ru.practicum.common.EwmUtils;
 import ru.practicum.events.dao.EventRepository;
 import ru.practicum.events.model.Event;
 import ru.practicum.events.model.State;
+import ru.practicum.events.pagination.OffsetBasedPageRequest;
 import ru.practicum.exception.ClientErrorException;
 import ru.practicum.exception.NotFoundException;
+import ru.practicum.exception.ValidationException;
 import ru.practicum.requests.dao.RequestRepository;
 import ru.practicum.requests.model.Request;
 import ru.practicum.requests.model.RequestStatus;
@@ -115,13 +121,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentDTO> getCommentsByEvent(Long eventId) {
-        Event event = eventCheck(eventId);
-        if (!event.getState().equals(State.PUBLISHED)) {
-            throw new ClientErrorException("Комментарии можно получать только у опубликованных событий.");
-        }
-        return commentRepository
-                .findAllByEventIdOrderByCreationDateDesc(eventId)
+    public List<CommentDTO> getCommentsByEvent(Long eventId, int from, int size) {
+        validatePagination(from, size);
+        eventCheck(eventId);
+
+        Pageable pageable = new OffsetBasedPageRequest(
+                from,
+                size,
+                Sort.by(Sort.Direction.DESC, "creationDate")
+                        .and(Sort.by(Sort.Direction.DESC, "id"))
+        );
+
+        return commentRepository.findAllByEventId(eventId, pageable)
                 .stream()
                 .map(CommentMap::commentToCommentDTO)
                 .toList();
@@ -132,5 +143,68 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentCheck(commentId);
 
         return CommentMap.commentToCommentDTO(comment);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCommentByAdmin(Long commentId) {
+        Comment comment = commentCheck(commentId);
+        commentRepository.delete(comment);
+    }
+
+    @Override
+    public List<CommentDTO> getCommentsForAdmin(
+            Long eventId,
+            Long userId,
+            String text,
+            int from,
+            int size) {
+        validatePagination(from, size);
+
+        Specification<Comment> specification =
+                (root, query, cb) -> cb.conjunction();
+
+        if (eventId != null) {
+            specification = specification.and(
+                    (root, query, cb) ->
+                            cb.equal(root.get("event").get("id"), eventId)
+            );
+        }
+
+        if (userId != null) {
+            specification = specification.and(
+                    (root, query, cb) ->
+                            cb.equal(root.get("user").get("id"), userId)
+            );
+        }
+
+        if (text != null && !text.isBlank()) {
+            String searchText = "%" + text.toLowerCase() + "%";
+
+            specification = specification.and(
+                    (root, query, cb) ->
+                            cb.like(cb.lower(root.get("text")), searchText)
+            );
+        }
+
+        Pageable pageable = new OffsetBasedPageRequest(
+                from,
+                size,
+                Sort.by(Sort.Direction.DESC, "creationDate")
+                        .and(Sort.by(Sort.Direction.DESC, "id"))
+        );
+
+        return commentRepository.findAll(specification, pageable)
+                .stream()
+                .map(CommentMap::commentToCommentDTO)
+                .toList();
+    }
+
+    private void validatePagination(int from, int size) {
+        if (from < 0 || size <= 0) {
+            throw new ValidationException(
+                    "Параметр from должен быть >= 0, а size должен быть > 0"
+            );
+        }
     }
 }
