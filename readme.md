@@ -7,7 +7,8 @@
   Комментарии могут добавлять только пользователи у которых одобрили заявку на участие.  
   Редактировать и удалять может только автор комментария.   
   Видеть комментарии к событию могут все.  
-  Отдельно получить список своих комментариев к событиям может каждый автор.   
+  Отдельно получить список всех комментариев к событию и получить конкретный заданный комментарий.  
+  Администратор не может удалить комментарий и посмотреть их по фильтрам с пагинацией.
 
 ### Таблица в БД
    CREATE TABLE IF NOT EXISTS comments (  
@@ -25,10 +26,11 @@
    COMMENT ON COLUMN comments.creation_date IS 'Дата и время создания комментария';  
 
 ### Эндпоинты
-   тип, путь, параметры, проверки, DTO  
-   POST ("/users/{userId}/comments") параметр строки event_id   
-    текст комментария в DTO  
-   PUT  
-   DELETE  
-   GET ("/users/{userId}/comments") все комментарии пользователя  
-   GET ("/users/{userId}/comments/event_id") все комментарии к событию  
+   тип, путь, параметры  
+   POST ("/users/{userId}/comments") параметр строки event_id  
+   PATCH ("/users/{userId}/comments/{commentId}"")    
+   DELETE ("/users/{userId}/comments/{commentId}"")   
+   GET ("/events/{eventId}/comments")  параметры пагинации from и size  
+   GET ("/comments/{commentId}") 
+   DELETE ("/admin/comments/{commentId}")  
+   GET ("/admin/comments") параметры: eventId, userId, text, from и size
